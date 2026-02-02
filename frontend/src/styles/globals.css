@@ -1638,35 +1638,35 @@ code {
 /* Dark Mode Support (optional) */
 @media (prefers-color-scheme: dark) {
   .login-box {
-    background: #1e1e1e;
-    color: #fff;
+    background: var(--white);
+    color: var(--dark-gray);
   }
 
   .label-text,
   .info-label,
   .info-item {
-    color: #e0e0e0;
+    color: var(--dark-gray);
   }
 
   .form-group input {
-    background: #2a2a2a;
-    color: white;
-    border-color: #404040;
+    background: var(--white);
+    color: var(--dark-gray);
+    border-color: #e0e0e0;
   }
 
   .form-group input:focus {
-    background: #323232;
+    background: white;
     box-shadow: 0 0 0 4px rgba(2, 182, 209, 0.1);
   }
 
   .info-section {
-    background: #2a2a2a;
-    border-color: #404040;
+    background: #f0f9fb;
+    border-color: #b3e5fc;
   }
 
   .info-value {
-    background: #323232;
-    color: #fff;
-    border-color: #404040;
+    background: var(--white);
+    color: var(--dark-gray);
+    border-color: #e0e0e0;
   }
 }
