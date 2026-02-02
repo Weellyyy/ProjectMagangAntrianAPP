@@ -269,6 +269,7 @@ const AdminDashboard = () => {
                     <th>Nama</th>
                     <th>No. Telepon</th>
                     <th>Kategori</th>
+                    <th>Detail Keluhan</th>
                     <th>Status</th>
                     <th>Waktu Masuk</th>
                     <th>Aksi</th>
@@ -284,6 +285,7 @@ const AdminDashboard = () => {
                         <td>{item.nama}</td>
                         <td>{item.no_telp}</td>
                         <td>{item.kategori_keluhan}</td>
+                        <td>{item.detail_keluhan || '-'}</td>
                         <td>
                           <select
                             value={item.status}
@@ -309,7 +311,7 @@ const AdminDashboard = () => {
                     ))
                   ) : (
                     <tr>
-                      <td colSpan="9" className="no-data">Tidak ada data antrian</td>
+                      <td colSpan="10" className="no-data">Tidak ada data antrian</td>
                     </tr>
                   )}
                 </tbody>
