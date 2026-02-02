@@ -17,6 +17,14 @@ const LandingPage = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    
+    // Hanya angka untuk ID Pelanggan
+    if (name === 'id_pelanggan') {
+      if (!/^\d*$/.test(value)) {
+        return;
+      }
+    }
+    
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -321,7 +329,7 @@ const LandingPage = () => {
               <div className="form-group">
                 <label htmlFor="id_pelanggan">ID Pelanggan *</label>
                 <input
-                  type="text"
+                  type="number"
                   id="id_pelanggan"
                   name="id_pelanggan"
                   value={formData.id_pelanggan}
@@ -329,6 +337,7 @@ const LandingPage = () => {
                   placeholder="Masukkan ID pelanggan"
                   required
                   autoFocus
+                  min="0"
                 />
               </div>
 
