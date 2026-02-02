@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FiUser, FiLogOut, FiList, FiBarChart2 } from "react-icons/fi";
+
 
 const AdminDashboard = () => {
   const navigate = useNavigate();
@@ -164,7 +166,8 @@ const AdminDashboard = () => {
       <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
         <div className="sidebar-header">
           <div className="sidebar-logo">
-            <span className="sidebar-icon">📊</span>
+            <img src="/logobulat.png" alt="ICON PLUS Logo" className="logo-image" />
+            {/* <span className="sidebar-icon">📊</span> */}
             {sidebarOpen && <span className="sidebar-title">ICON PLUS</span>}
           </div>
           <button 
@@ -177,35 +180,35 @@ const AdminDashboard = () => {
         </div>
 
         <nav className="sidebar-nav">
-          <button 
+          <button
             className={`sidebar-item ${activeTab === 'antrian' ? 'active' : ''}`}
             onClick={() => setActiveTab('antrian')}
-            title="Data Antrian"
           >
-            <span className="sidebar-icon">📋</span>
+            <FiList size={20} className="sidebar-icon" />
             {sidebarOpen && <span>Data Antrian</span>}
           </button>
-          <button 
+
+          <button
             className={`sidebar-item ${activeTab === 'statistics' ? 'active' : ''}`}
             onClick={() => setActiveTab('statistics')}
-            title="Statistik"
           >
-            <span className="sidebar-icon">📈</span>
+            <FiBarChart2 size={20} className="sidebar-icon" />
             {sidebarOpen && <span>Statistik</span>}
           </button>
+
         </nav>
 
         <div className="sidebar-footer">
           <div className="sidebar-user" title={user.username}>
-            <span className="sidebar-icon">👤</span>
-            {sidebarOpen && <span className="sidebar-username">{user.username}</span>}
+            <FiUser size={20} className="sidebar-icon" />
+            {sidebarOpen && (<span className="sidebar-username">{user.username}</span>)}
           </div>
           <button 
             onClick={handleLogout} 
             className="sidebar-logout"
             title="Logout"
           >
-            <span className="sidebar-icon">🚪</span>
+            <FiLogOut size={20} className="sidebar-icon" />
             {sidebarOpen && <span>Logout</span>}
           </button>
         </div>

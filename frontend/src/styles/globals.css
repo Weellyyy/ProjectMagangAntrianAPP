@@ -859,7 +859,7 @@ code {
    ======================================== */
 .admin-login-page {
   min-height: 100vh;
-  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  background: linear-gradient(135deg, rgba(2, 182, 209, 0.1) 0%, rgba(26, 89, 158, 0.1) 100%), var(--white);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -875,9 +875,9 @@ code {
   position: absolute;
   top: 20px;
   left: 20px;
-  background: rgba(255, 255, 255, 0.2);
-  color: var(--white);
-  border: 2px solid rgba(255, 255, 255, 0.3);
+  background: var(--white);
+  color: var(--secondary);
+  border: 2px solid var(--primary);
   padding: 10px 20px;
   border-radius: 8px;
   font-size: 0.95rem;
@@ -888,12 +888,15 @@ code {
   align-items: center;
   gap: 8px;
   z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 }
 
 .back-to-home-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  border-color: rgba(255, 255, 255, 0.5);
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: var(--white);
+  border-color: var(--primary);
   transform: translateX(-2px);
+  box-shadow: 0 4px 15px rgba(2, 182, 209, 0.3);
 }
 
 .back-to-home-btn:active {
@@ -921,7 +924,7 @@ code {
 .shape {
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: linear-gradient(135deg, rgba(2, 182, 209, 0.08) 0%, rgba(26, 89, 158, 0.08) 100%);
 }
 
 .shape-1 {
@@ -984,7 +987,7 @@ code {
 }
 
 .subtitle {
-  color: #999;
+  color: var(--text-gray);
   margin: 5px 0 0 0;
   font-size: 0.9rem;
   letter-spacing: 0.5px;
@@ -1002,7 +1005,7 @@ code {
   left: 14px;
   font-size: 1.2rem;
   pointer-events: none;
-  color: #999;
+  color: var(--text-gray);
 }
 
 .form-group input {
