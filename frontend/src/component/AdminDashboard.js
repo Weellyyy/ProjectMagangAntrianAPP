@@ -11,6 +11,7 @@ const AdminDashboard = () => {
   const [filters, setFilters] = useState({ status: '', date: '' });
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
+  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   // Check authentication
   useEffect(() => {
@@ -146,37 +147,89 @@ const AdminDashboard = () => {
 
   return (
     <div className="admin-dashboard">
-      <div className="admin-header">
-        <div className="header-content">
-          <h1>📊 Admin Dashboard</h1>
-          <p>ICON PLUS Customer Service Management System</p>
+      {/* Sidebar */}
+      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
+        <div className="sidebar-header">
+          <div className="sidebar-logo">
+            <span className="sidebar-icon">📊</span>
+            {sidebarOpen && <span className="sidebar-title">ICON PLUS</span>}
+          </div>
+          <button 
+            className="sidebar-toggle"
+            onClick={() => setSidebarOpen(!sidebarOpen)}
+            title={sidebarOpen ? 'Tutup sidebar' : 'Buka sidebar'}
+          >
+            {sidebarOpen ? '◀' : '▶'}
+          </button>
         </div>
-        <div className="header-actions">
-          <span className="user-info">👤 {user.username}</span>
-          <button onClick={handleLogout} className="logout-btn">Logout</button>
-        </div>
-      </div>
 
-      {message && (
-        <div className={`message ${message.includes('✓') ? 'success' : 'error'}`}>
-          {message}
-        </div>
-      )}
+        <nav className="sidebar-nav">
+          <button 
+            className={`sidebar-item ${activeTab === 'antrian' ? 'active' : ''}`}
+            onClick={() => setActiveTab('antrian')}
+            title="Data Antrian"
+          >
+            <span className="sidebar-icon">📋</span>
+            {sidebarOpen && <span>Data Antrian</span>}
+          </button>
+          <button 
+            className={`sidebar-item ${activeTab === 'statistics' ? 'active' : ''}`}
+            onClick={() => setActiveTab('statistics')}
+            title="Statistik"
+          >
+            <span className="sidebar-icon">📈</span>
+            {sidebarOpen && <span>Statistik</span>}
+          </button>
+        </nav>
 
-      <div className="tabs">
-        <button 
-          className={`tab-btn ${activeTab === 'antrian' ? 'active' : ''}`}
-          onClick={() => setActiveTab('antrian')}
-        >
-          📋 Data Antrian
-        </button>
-        <button 
-          className={`tab-btn ${activeTab === 'statistics' ? 'active' : ''}`}
-          onClick={() => setActiveTab('statistics')}
-        >
-          📈 Statistik
-        </button>
-      </div>
+        <div className="sidebar-footer">
+          <div className="sidebar-user" title={user.username}>
+            <span className="sidebar-icon">👤</span>
+            {sidebarOpen && <span className="sidebar-username">{user.username}</span>}
+          </div>
+          <button 
+            onClick={handleLogout} 
+            className="sidebar-logout"
+            title="Logout"
+          >
+            <span className="sidebar-icon">🚪</span>
+            {sidebarOpen && <span>Logout</span>}
+          </button>
+        </div>
+      </aside>
+
+      {/* Main Content */}
+      <div className="admin-main">
+        <div className="admin-header">
+          <div className="header-content">
+            <h1>📊 Admin Dashboard</h1>
+            <p>ICON PLUS Customer Service Management System</p>
+          </div>
+          <div className="header-actions">
+            <span className="user-info">👤 {user.username}</span>
+          </div>
+        </div>
+
+        {message && (
+          <div className={`message ${message.includes('✓') ? 'success' : 'error'}`}>
+            {message}
+          </div>
+        )}
+
+        <div className="tabs">
+          <button 
+            className={`tab-btn ${activeTab === 'antrian' ? 'active' : ''}`}
+            onClick={() => setActiveTab('antrian')}
+          >
+            📋 Data Antrian
+          </button>
+          <button 
+            className={`tab-btn ${activeTab === 'statistics' ? 'active' : ''}`}
+            onClick={() => setActiveTab('statistics')}
+          >
+            📈 Statistik
+          </button>
+        </div>
 
       {activeTab === 'antrian' && (
         <div className="tab-content">
@@ -298,6 +351,7 @@ const AdminDashboard = () => {
           )}
         </div>
       )}
+      </div>
     </div>
   );
 };
