@@ -67,8 +67,8 @@ const LandingPage = () => {
       <header className="navbar">
         <div className="navbar-content">
           <div className="logo">
-            <span className="logo-icon">📱</span>
-            <span className="logo-text">ICON PLUS</span>
+            <img src="/logo-iconplus.png" alt="ICON PLUS Logo" className="logo-image" />
+            <span className="logo-text">ICON PLUS JOGJA</span>
           </div>
           <nav className="nav-menu">
             <a href="#features">Fitur</a>
@@ -86,11 +86,11 @@ const LandingPage = () => {
       <section className="hero">
         <div className="hero-container">
           <div className="hero-left">
-            <h1>Selamat Datang di<br /><span className="highlight">ICON PLUS</span></h1>
+            <h1>Selamat Datang di<br /><span className="highlight">ICON PLUS JOGJA</span></h1>
             <p>Sistem antrian customer service yang modern, cepat, dan terpercaya untuk layanan terbaik Anda.</p>
             <div className="hero-buttons">
               <button className="btn btn-primary" onClick={() => setShowForm(true)}>
-                📋 Ambil Nomor Antrian
+                Ambil Nomor Antrian
               </button>
             </div>
           </div>
@@ -99,7 +99,7 @@ const LandingPage = () => {
             <div className="phone-mockup">
               <div className="phone-screen">
                 <div className="screen-header">
-                  <span>ICON PLUS</span>
+                  <span>ICON PLUS JOGJA</span>
                 </div>
                 <div className="screen-content">
                   <div className="queue-card">
@@ -229,7 +229,7 @@ const LandingPage = () => {
           <div className="contact-grid">
             <div className="contact-item">
               <span className="contact-icon">📞</span>
-              <p>021-1234-5678</p>
+              <p>0815-1550-0045</p>
             </div>
             <div className="contact-item">
               <span className="contact-icon">📧</span>
@@ -237,7 +237,7 @@ const LandingPage = () => {
             </div>
             <div className="contact-item">
               <span className="contact-icon">📍</span>
-              <p>Jakarta, Indonesia</p>
+              <p>Yogyakarta, Indonesia</p>
             </div>
           </div>
         </div>

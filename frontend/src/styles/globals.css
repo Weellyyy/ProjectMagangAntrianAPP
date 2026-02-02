@@ -80,6 +80,13 @@ code {
   font-size: 2rem;
 }
 
+/* Logo Image */
+.logo-image {
+  height: 40px;
+  width: auto;
+  object-fit: contain;
+}
+
 .logo-text {
   background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
   -webkit-background-clip: text;
