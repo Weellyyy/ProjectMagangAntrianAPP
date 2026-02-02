@@ -15,6 +15,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/auth', authRoutes);
 app.use('/api/antrian', antrianRoutes);
 
+//asdasd
 app.get('/', (req, res) => {
   res.send('Selamat datang di API Antrian CS ICON PLUS');
 });
