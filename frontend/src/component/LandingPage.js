@@ -92,9 +92,6 @@ const LandingPage = () => {
               <button className="btn btn-primary" onClick={() => setShowForm(true)}>
                 📋 Ambil Nomor Antrian
               </button>
-              <button className="btn btn-secondary">
-                📖 Pelajari Lebih Lanjut
-              </button>
             </div>
           </div>
 
@@ -392,7 +389,7 @@ const LandingPage = () => {
               </div>
 
               <button type="submit" disabled={loading} className="form-submit-btn">
-                {loading ? 'Memproses...' : '✓ Ambil Nomor Antrian'}
+                {loading ? 'Memproses...' : 'Ambil Nomor Antrian'}
               </button>
             </form>
           </div>
