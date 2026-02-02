@@ -1251,6 +1251,13 @@ code {
   flex-shrink: 0;
 }
 
+/* Ukuran Icon Logo di Sidebar */
+.sidebar-logo .logo-image {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
 .sidebar-title {
   font-size: 1.1rem;
   font-weight: 700;
@@ -1307,6 +1314,8 @@ code {
 .sidebar-item .sidebar-icon {
   font-size: 1.2rem;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .sidebar-item:hover {
@@ -1343,6 +1352,8 @@ code {
 .sidebar-user .sidebar-icon {
   font-size: 1.2rem;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .sidebar-username {
@@ -1368,6 +1379,8 @@ code {
 .sidebar-logout .sidebar-icon {
   font-size: 1.2rem;
   flex-shrink: 0;
+  width: 20px;
+  height: 20px;
 }
 
 .sidebar-logout:hover {
@@ -1405,6 +1418,18 @@ code {
   margin: 0;
   font-size: 1.8rem;
   font-weight: 700;
+}
+
+/* Dashboard Title dengan Icon */
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-title svg {
+  width: 26px;
+  height: 26px;
 }
 
 .header-content p {

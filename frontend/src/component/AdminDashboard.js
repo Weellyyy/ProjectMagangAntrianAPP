@@ -216,7 +216,11 @@ const AdminDashboard = () => {
       <div className="admin-main">
         <div className="admin-header">
           <div className="header-content">
-            <h1>📊 Admin Dashboard</h1>
+            <h1 className="dashboard-title">
+              <FiBarChart2 size={26} />
+              <span>Admin Dashboard</span>
+            </h1>
+
             <p>ICON PLUS Customer Service Management System</p>
           </div>
           <div className="header-actions">
