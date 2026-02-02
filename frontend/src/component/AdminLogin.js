@@ -65,7 +65,6 @@ const AdminLogin = () => {
       <div className="login-container">
         <div className="login-box">
           <div className="logo-section">
-            <div className="logo">👨‍💼</div>
             <h1>Admin Login</h1>
             <p className="subtitle">ICON PLUS Customer Service</p>
           </div>
@@ -134,7 +133,7 @@ const AdminLogin = () => {
                   Memproses...
                 </>
               ) : (
-                '🔑 Login'
+                'Login'
               )}
             </button>
           </form>
