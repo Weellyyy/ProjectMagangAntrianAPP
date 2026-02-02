@@ -1542,7 +1542,7 @@ code {
   border-color: #ff9800;
 }
 
-.status-select.status-dipanggil {
+.status-select.status-dilayani {
   color: var(--primary);
   border-color: var(--primary);
 }
@@ -1550,11 +1550,6 @@ code {
 .status-select.status-selesai {
   color: #4caf50;
   border-color: #4caf50;
-}
-
-.status-select.status-batal {
-  color: #f44336;
-  border-color: #f44336;
 }
 
 .delete-btn {
@@ -1623,10 +1618,6 @@ code {
 
 .stat-value.selesai {
   color: #4caf50;
-}
-
-.stat-value.batal {
-  color: #ff5252;
 }
 
 /* Loading */

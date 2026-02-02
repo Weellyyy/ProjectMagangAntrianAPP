@@ -46,7 +46,7 @@ const AdminLogin = () => {
       if (data.success) {
         localStorage.setItem('token', data.data.token);
         localStorage.setItem('user', JSON.stringify(data.data.user));
-        setMessage('✓ Login berhasil! Mengarahkan...');
+        setMessage('Login berhasil! Mengarahkan...');
         setTimeout(() => {
           navigate('/admin');
         }, 1000);

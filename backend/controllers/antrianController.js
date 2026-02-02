@@ -101,6 +101,8 @@ const antrianController = {
     try {
       const { id } = req.params;
       const { status } = req.body;
+      
+      console.log('Update status request:', { id, status });
 
       if (!status) {
         return res.status(400).json({
@@ -110,6 +112,7 @@ const antrianController = {
       }
 
       const updated = await antrianModel.updateStatus(id, status);
+      console.log('Update result:', updated);
 
       if (!updated) {
         return res.status(404).json({
@@ -159,7 +162,10 @@ const antrianController = {
   getStatistics: async (req, res) => {
     try {
       const { startDate, endDate } = req.query;
+      console.log('Fetching statistics with params:', { startDate, endDate });
+      
       const statistics = await antrianModel.getStatistics(startDate, endDate);
+      console.log('Statistics result:', statistics);
 
       res.json({
         success: true,
@@ -169,7 +175,8 @@ const antrianController = {
       console.error('Get statistics error:', error);
       res.status(500).json({
         success: false,
-        message: 'Terjadi kesalahan saat mengambil statistik'
+        message: 'Terjadi kesalahan saat mengambil statistik',
+        error: error.message
       });
     }
   }

@@ -70,7 +70,7 @@ const antrianModel = {
   },
 
   updateStatus: async (id, status) => {
-    const validStatus = ['menunggu', 'dipanggil', 'selesai', 'batal'];
+    const validStatus = ['menunggu', 'dilayani', 'selesai'];
     if (!validStatus.includes(status)) {
       throw new Error('Status tidak valid');
     }
@@ -92,51 +92,43 @@ const antrianModel = {
 
   // Dapatkan statistik
   getStatistics: async (startDate, endDate) => {
-    const params = [];
     let dateFilter = '';
+    const params = [];
 
     if (startDate && endDate) {
-      dateFilter = 'WHERE DATE(created_at) BETWEEN ? AND ?';
+      dateFilter = 'DATE(created_at) BETWEEN ? AND ?';
       params.push(startDate, endDate);
     } else {
-      dateFilter = 'WHERE MONTH(created_at) = MONTH(CURDATE()) AND YEAR(created_at) = YEAR(CURDATE())';
+      dateFilter = 'DATE(created_at) = CURDATE()';
     }
+    
+    // Hitung total
     const [totalResult] = await db.query(
-      `SELECT COUNT(*) as total FROM pengunjung ${dateFilter}`,
+      `SELECT COUNT(*) as total FROM pengunjung WHERE ${dateFilter}`,
       params
     );
 
-    const [categoryResult] = await db.query(
-      `SELECT kategori_keluhan, COUNT(*) as jumlah 
-       FROM pengunjung 
-       ${dateFilter}
-       GROUP BY kategori_keluhan`,
-      params
+    // Hitung per status
+    const [menungguResult] = await db.query(
+      `SELECT COUNT(*) as count FROM pengunjung WHERE ${dateFilter} AND status = 'menunggu'`,
+      [...params]
     );
 
-    const [statusResult] = await db.query(
-      `SELECT status, COUNT(*) as jumlah 
-       FROM pengunjung 
-       ${dateFilter}
-       GROUP BY status`,
-      params
+    const [dilayaniResult] = await db.query(
+      `SELECT COUNT(*) as count FROM pengunjung WHERE ${dateFilter} AND status = 'dilayani'`,
+      [...params]
     );
 
-    const [trendResult] = await db.query(
-      `SELECT 
-        DATE(created_at) as tanggal,
-        COUNT(*) as jumlah
-       FROM pengunjung
-       WHERE DATE(created_at) >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
-       GROUP BY DATE(created_at)
-       ORDER BY tanggal ASC`
+    const [selesaiResult] = await db.query(
+      `SELECT COUNT(*) as count FROM pengunjung WHERE ${dateFilter} AND status = 'selesai'`,
+      [...params]
     );
 
     return {
       total: totalResult[0].total,
-      byCategory: categoryResult,
-      byStatus: statusResult,
-      trend: trendResult
+      menunggu: menungguResult[0].count,
+      sedang_dilayani: dilayaniResult[0].count,
+      selesai: selesaiResult[0].count
     };
   }
 };

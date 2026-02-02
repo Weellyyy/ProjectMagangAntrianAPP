@@ -57,11 +57,16 @@ const AdminDashboard = () => {
       });
 
       const data = await response.json();
+      console.log('Statistics response:', data);
+      
       if (data.success) {
         setStatistics(data.data);
+      } else {
+        setMessage('✗ ' + (data.message || 'Gagal mengambil statistik'));
       }
     } catch (error) {
       console.error('Fetch statistics error:', error);
+      setMessage('✗ Error: ' + error.message);
     } finally {
       setLoading(false);
     }
@@ -76,6 +81,8 @@ const AdminDashboard = () => {
 
   const handleUpdateStatus = async (id, newStatus) => {
     try {
+      console.log('Updating status:', { id, newStatus });
+      
       const response = await fetch(`http://localhost:3000/api/antrian/${id}/status`, {
         method: 'PUT',
         headers: {
@@ -86,14 +93,20 @@ const AdminDashboard = () => {
       });
 
       const data = await response.json();
+      console.log('Update status response:', data);
+      
       if (data.success) {
         setMessage('✓ Status antrian diperbarui');
         fetchAntrian(filters);
+        setTimeout(() => setMessage(''), 3000);
       } else {
-        setMessage('✗ ' + data.message);
+        setMessage('✗ ' + (data.message || 'Gagal memperbarui status'));
+        setTimeout(() => setMessage(''), 5000);
       }
     } catch (error) {
+      console.error('Update status error:', error);
       setMessage('✗ Error: ' + error.message);
+      setTimeout(() => setMessage(''), 5000);
     }
   };
 
@@ -242,9 +255,8 @@ const AdminDashboard = () => {
             >
               <option value="">Semua Status</option>
               <option value="menunggu">Menunggu</option>
-              <option value="dipanggil">Dipanggil</option>
+              <option value="dilayani">Dilayani</option>
               <option value="selesai">Selesai</option>
-              <option value="batal">Batal</option>
             </select>
 
             <input
@@ -293,9 +305,8 @@ const AdminDashboard = () => {
                             className={`status-select status-${item.status}`}
                           >
                             <option value="menunggu">Menunggu</option>
-                            <option value="dipanggil">Dipanggil</option>
+                            <option value="dilayani">Dilayani</option>
                             <option value="selesai">Selesai</option>
-                            <option value="batal">Batal</option>
                           </select>
                         </td>
                         <td>{item.created_at ? new Date(item.created_at).toLocaleString('id-ID') : '-'}</td>
@@ -342,10 +353,6 @@ const AdminDashboard = () => {
               <div className="stat-card">
                 <h3>Selesai</h3>
                 <p className="stat-value selesai">{statistics.selesai || 0}</p>
-              </div>
-              <div className="stat-card">
-                <h3>Batal</h3>
-                <p className="stat-value batal">{statistics.batal || 0}</p>
               </div>
             </div>
           ) : (
