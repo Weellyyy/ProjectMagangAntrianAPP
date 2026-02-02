@@ -192,17 +192,23 @@ const AdminDashboard = () => {
 
         <div className="sidebar-footer">
           <div className="sidebar-user" title={user.username}>
-            <span className="sidebar-icon">👤</span>
-            {sidebarOpen && <span className="sidebar-username">{user.username}</span>}
+            <FiUser size={20} className="sidebar-icon" />
+            {sidebarOpen && (
+              <span className="sidebar-username">
+                {user.username || "Admin"}
+              </span>
+            )}
           </div>
-          <button 
-            onClick={handleLogout} 
+
+          <button
+            onClick={handleLogout}
             className="sidebar-logout"
             title="Logout"
           >
-            <span className="sidebar-icon">🚪</span>
+            <FiLogOut size={20} className="sidebar-icon" />
             {sidebarOpen && <span>Logout</span>}
           </button>
+
         </div>
       </aside>
 
