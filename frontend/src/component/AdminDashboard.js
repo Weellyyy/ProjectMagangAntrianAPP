@@ -14,6 +14,9 @@ const AdminDashboard = () => {
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  
+  // --- STATE BARU: Untuk Modal Detail ---
+  const [selectedKeluhan, setSelectedKeluhan] = useState(null);
 
   // Check authentication
   useEffect(() => {
@@ -59,15 +62,12 @@ const AdminDashboard = () => {
       });
 
       const data = await response.json();
-      console.log('Statistics response:', data);
-      
       if (data.success) {
         setStatistics(data.data);
       } else {
         setMessage('✗ ' + (data.message || 'Gagal mengambil statistik'));
       }
     } catch (error) {
-      console.error('Fetch statistics error:', error);
       setMessage('✗ Error: ' + error.message);
     } finally {
       setLoading(false);
@@ -83,8 +83,6 @@ const AdminDashboard = () => {
 
   const handleUpdateStatus = async (id, newStatus) => {
     try {
-      console.log('Updating status:', { id, newStatus });
-      
       const response = await fetch(`http://localhost:3000/api/antrian/${id}/status`, {
         method: 'PUT',
         headers: {
@@ -95,8 +93,6 @@ const AdminDashboard = () => {
       });
 
       const data = await response.json();
-      console.log('Update status response:', data);
-      
       if (data.success) {
         setMessage('✓ Status antrian diperbarui');
         fetchAntrian(filters);
@@ -106,7 +102,6 @@ const AdminDashboard = () => {
         setTimeout(() => setMessage(''), 5000);
       }
     } catch (error) {
-      console.error('Update status error:', error);
       setMessage('✗ Error: ' + error.message);
       setTimeout(() => setMessage(''), 5000);
     }
@@ -135,8 +130,6 @@ const AdminDashboard = () => {
       setMessage('✗ Error: ' + error.message);
     }
   };
-
-  const handleDeleteAntrian = handleDelete;
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -173,7 +166,6 @@ const AdminDashboard = () => {
           <button 
             className="sidebar-toggle"
             onClick={() => setSidebarOpen(!sidebarOpen)}
-            title={sidebarOpen ? 'Tutup sidebar' : 'Buka sidebar'}
           >
             {sidebarOpen ? '◀' : '▶'}
           </button>
@@ -200,15 +192,15 @@ const AdminDashboard = () => {
 
         <div className="sidebar-footer">
           <div className="sidebar-user" title={user.username}>
-            <FiUser size={20} className="sidebar-icon" />
-            {sidebarOpen && (<span className="sidebar-username">{user.username}</span>)}
+            <span className="sidebar-icon">👤</span>
+            {sidebarOpen && <span className="sidebar-username">{user.username}</span>}
           </div>
           <button 
             onClick={handleLogout} 
             className="sidebar-logout"
             title="Logout"
           >
-            <FiLogOut size={20} className="sidebar-icon" />
+            <span className="sidebar-icon">🚪</span>
             {sidebarOpen && <span>Logout</span>}
           </button>
         </div>
@@ -284,7 +276,7 @@ const AdminDashboard = () => {
                     <th>Nama</th>
                     <th>No. Telepon</th>
                     <th>Kategori</th>
-                    <th>Detail Keluhan</th>
+                    <th>Detail Keluhan</th> {/* Kolom yang dimodifikasi */}
                     <th>Status</th>
                     <th>Waktu Masuk</th>
                     <th>Aksi</th>
@@ -300,7 +292,20 @@ const AdminDashboard = () => {
                         <td>{item.nama}</td>
                         <td>{item.no_telp}</td>
                         <td>{item.kategori_keluhan}</td>
-                        <td>{item.detail_keluhan || '-'}</td>
+                        
+                        {/* --- MODIFIKASI: Box Keluhan & Tombol Detail --- */}
+                        <td className="detail-column">
+                          <div className="keluhan-text-box">
+                            {item.detail_keluhan || '-'}
+                          </div>
+                          <button 
+                            className="view-detail-btn"
+                            onClick={() => setSelectedKeluhan(item)}
+                          >
+                            Lihat Detail
+                          </button>
+                        </td>
+
                         <td>
                           <select
                             value={item.status}
@@ -314,12 +319,7 @@ const AdminDashboard = () => {
                         </td>
                         <td>{item.created_at ? new Date(item.created_at).toLocaleString('id-ID') : '-'}</td>
                         <td>
-                          <button
-                            onClick={() => handleDeleteAntrian(item.id_pengunjung)}
-                            className="delete-btn"
-                          >
-                            🗑️
-                          </button>
+                          <button onClick={() => handleDelete(item.id_pengunjung)} className="delete-btn">🗑️</button>
                         </td>
                       </tr>
                     ))
@@ -335,6 +335,40 @@ const AdminDashboard = () => {
         </div>
       )}
 
+      {/* --- MODAL POP-UP DETAIL --- */}
+      {selectedKeluhan && (
+        <div className="modal-overlay" onClick={() => setSelectedKeluhan(null)}>
+          <div className="modal-content detail-modal" onClick={e => e.stopPropagation()}>
+            <div className="modal-header">
+              <h2>Detail Keluhan Pelanggan</h2>
+              <button className="close-btn" onClick={() => setSelectedKeluhan(null)}>&times;</button>
+            </div>
+            <div className="modal-body">
+              <div className="info-row">
+                <span className="info-label">Nama Pelanggan:</span>
+                <span className="info-value">{selectedKeluhan.nama}</span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">ID Pelanggan:</span>
+                <span className="info-value">{selectedKeluhan.id_pelanggan || '-'}</span>
+              </div>
+              <div className="info-row">
+                <span className="info-label">Kategori:</span>
+                <span className="info-value">{selectedKeluhan.kategori_keluhan}</span>
+              </div>
+              <div className="full-keluhan">
+                <strong>Isi Keluhan:</strong>
+                <p>{selectedKeluhan.detail_keluhan || 'Tidak ada detail keluhan.'}</p>
+              </div>
+            </div>
+            <div className="modal-footer">
+              <button className="admin-login-btn" onClick={() => setSelectedKeluhan(null)}>Tutup</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Statistik Content (Tetap Sama) */}
       {activeTab === 'statistics' && (
         <div className="tab-content">
           {loading ? (
@@ -367,6 +401,5 @@ const AdminDashboard = () => {
     </div>
   );
 };
-
 
 export default AdminDashboard;
