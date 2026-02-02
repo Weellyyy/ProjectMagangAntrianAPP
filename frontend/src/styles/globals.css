@@ -1153,13 +1153,13 @@ code {
 .footer .container p {
   margin: 0;
   font-size: 0.9rem;
-  color: rgba(0, 0, 0, 0.8);
+  color: #1A599E;
 }
 
 .footer-link {
   background: none;
   border: none;
-  color: var(--dark-gray);
+  color: #1A599E;
   cursor: pointer;
   padding: 0 5px;
   font-size: 0.9rem;
