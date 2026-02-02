@@ -62,6 +62,14 @@ const AdminLogin = () => {
 
   return (
     <div className="admin-login-page">
+      <button 
+        className="back-to-home-btn"
+        onClick={() => navigate('/')}
+        title="Kembali ke halaman utama"
+      >
+        ← Kembali
+      </button>
+
       <div className="login-container">
         <div className="login-box">
           <div className="logo-section">
