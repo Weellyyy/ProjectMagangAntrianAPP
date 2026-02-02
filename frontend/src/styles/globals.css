@@ -681,28 +681,30 @@ code {
 .success-modal-content {
   background: var(--white);
   border-radius: 16px;
-  padding: 50px 40px;
-  max-width: 500px;
+  padding: 30px 25px;
+  max-width: 450px;
+  max-height: 90vh;
   width: 100%;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
   position: relative;
   animation: slideUp 0.3s ease;
   text-align: center;
+  overflow-y: auto;
 }
 
 .success-animation {
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .checkmark {
-  width: 80px;
-  height: 80px;
+  width: 60px;
+  height: 60px;
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: var(--white);
   margin: 0 auto;
   animation: popIn 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
@@ -727,20 +729,20 @@ code {
 
 .success-modal-content h2 {
   color: var(--secondary);
-  margin: 0 0 8px 0;
-  font-size: 1.8rem;
+  margin: 0 0 6px 0;
+  font-size: 1.5rem;
 }
 
 .success-subtitle {
   color: var(--primary);
-  margin: 0 0 30px 0;
-  font-size: 1rem;
+  margin: 0 0 20px 0;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
 .queue-display {
-  margin: 30px 0;
-  padding: 30px;
+  margin: 20px 0;
+  padding: 20px;
   background: linear-gradient(135deg, rgba(2, 182, 209, 0.1) 0%, rgba(26, 89, 158, 0.1) 100%);
   border-radius: 12px;
   border: 2px solid var(--primary);
@@ -761,21 +763,21 @@ code {
 }
 
 .queue-number-large {
-  font-size: 4rem;
+  font-size: 3rem;
   font-weight: 700;
   background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: 8px;
+  letter-spacing: 6px;
   font-family: 'Courier New', monospace;
 }
 
 .queue-info-display {
   background: var(--light-gray);
   border-radius: 12px;
-  padding: 20px;
-  margin: 20px 0;
+  padding: 15px;
+  margin: 15px 0;
   text-align: left;
 }
 
@@ -783,7 +785,7 @@ code {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 0;
+  padding: 10px 0;
   border-bottom: 1px solid #e0e0e0;
 }
 
@@ -813,16 +815,16 @@ code {
 .queue-instructions {
   background: linear-gradient(135deg, rgba(2, 182, 209, 0.05) 0%, rgba(26, 89, 158, 0.05) 100%);
   border-left: 4px solid var(--primary);
-  padding: 20px;
+  padding: 15px;
   border-radius: 8px;
-  margin: 20px 0;
+  margin: 15px 0;
   text-align: left;
 }
 
 .queue-instructions h4 {
-  margin: 0 0 12px 0;
+  margin: 0 0 10px 0;
   color: var(--secondary);
-  font-size: 0.95rem;
+  font-size: 0.9rem;
 }
 
 .queue-instructions ul {
@@ -833,9 +835,9 @@ code {
 
 .queue-instructions li {
   color: var(--text-gray);
-  font-size: 0.9rem;
-  margin-bottom: 8px;
-  line-height: 1.5;
+  font-size: 0.85rem;
+  margin-bottom: 6px;
+  line-height: 1.4;
   padding-left: 20px;
   position: relative;
 }
@@ -851,7 +853,7 @@ code {
 .success-actions {
   display: flex;
   gap: 15px;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .success-actions button {
