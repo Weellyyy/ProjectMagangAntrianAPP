@@ -224,7 +224,11 @@ const AdminDashboard = () => {
             <p>ICON PLUS Customer Service Management System</p>
           </div>
           <div className="header-actions">
-            <span className="user-info">👤 {user.username}</span>
+            
+            <span className="user-info">
+              <FiUser size={20} />
+              {user.username}
+            </span>
           </div>
         </div>
 

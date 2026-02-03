@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({
@@ -89,7 +90,7 @@ const AdminLogin = () => {
                 <span className="label-text">Username</span>
               </label>
               <div className="input-wrapper">
-                <span className="input-icon">👤</span>
+                <span className="input-icon"><FiUser size={20} /></span>
                 <input
                   type="text"
                   id="username"
@@ -108,7 +109,9 @@ const AdminLogin = () => {
                 <span className="label-text">Password</span>
               </label>
               <div className="input-wrapper">
-                <span className="input-icon">🔒</span>
+                <span className="input-icon">
+                  <FiLock size={20} />
+                </span>
                 <input
                   type={showPassword ? 'text' : 'password'}
                   id="password"
@@ -125,7 +128,7 @@ const AdminLogin = () => {
                   onClick={() => setShowPassword(!showPassword)}
                   title={showPassword ? 'Sembunyikan password' : 'Tampilkan password'}
                 >
-                  {showPassword ? '🙈' : '👁️'}
+                  {showPassword ? <FiEyeOff size={20} /> : <FiEye size={20} />}
                 </button>
               </div>
             </div>
