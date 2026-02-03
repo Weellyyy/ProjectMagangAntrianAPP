@@ -76,7 +76,7 @@ const LandingPage = () => {
       <header className="navbar">
         <div className="navbar-content">
           <div className="logo">
-            <img src="/logo-iconplus.png" alt="ICON PLUS Logo" className="logo-image" />
+            <img src="/iconnet.png" alt="ICON PLUS Logo" className="logo-image" />
             <span className="logo-text">ICON PLUS JOGJA</span>
           </div>
           
