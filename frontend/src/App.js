@@ -4,6 +4,7 @@ import './App.css';
 import LandingPage from './component/LandingPage';
 import AdminLogin from './component/AdminLogin';
 import AdminDashboard from './component/AdminDashboard';
+import ProtectedRoute from './component/ProtectedRoute';
 
 function App() {
   return (
@@ -11,7 +12,11 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/admin/login" element={<AdminLogin />} />
-        <Route path="/admin" element={<AdminDashboard />} />
+        <Route path="/admin" element={
+          <ProtectedRoute>
+            <AdminDashboard />
+          </ProtectedRoute>
+        } />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Router>
