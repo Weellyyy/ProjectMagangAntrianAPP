@@ -90,6 +90,35 @@ const LandingPage = () => {
         </div>
       </header>
 
+      <section 
+        className="hero" 
+        style={{
+          backgroundImage: "url('/FotoLP1.png')",
+          backgroundSize: 'cover',
+          backgroundPosition: 'center top',
+          backgroundRepeat: 'no-repeat',
+          minHeight: '800px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'flex-end',
+          padding: '40px',
+          position: 'relative'
+        }}
+      >
+        <div 
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            height: '50%',
+            background: 'linear-gradient(rgba(255,255,255,0.4), rgba(255,255,255,0))',
+            pointerEvents: 'none'
+          }}
+        />
+        
+      </section>
+
       {/* Hero Section */}
       <section className="hero">
         <div className="hero-container">
