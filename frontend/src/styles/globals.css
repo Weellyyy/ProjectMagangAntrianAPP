@@ -2061,4 +2061,81 @@ code {
   display: flex;
   justify-content: flex-end;
 }
+
+/* ========================================
+   RESPONSIVE DESIGN - MOBILE MENU
+   ======================================== */
+.mobile-menu-toggle {
+  display: none !important;
+}
+
+/* Mobile Styles - Below 768px */
+@media (max-width: 768px) {
+  .navbar-content {
+    padding: 15px 20px;
+  }
+
+  /* Hide desktop nav menu */
+  .nav-menu {
+    display: none !important;
+  }
+
+  /* Hide desktop admin login button */
+  .admin-login-btn {
+    display: none !important;
+  }
+
+  /* Show mobile hamburger button */
+  .mobile-menu-toggle {
+    display: flex !important;
+  }
+
+  .hero-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 20px;
+  }
+
+  .hero-left h1 {
+    font-size: 2rem;
+  }
+
+  .hero-left p {
+    font-size: 0.95rem;
+  }
+
+  .navbar-content {
+    justify-content: space-between;
+  }
+}
+
+/* Tablet Styles - 769px to 1024px */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .nav-menu {
+    gap: 20px;
+  }
+
+  .nav-menu a {
+    font-size: 0.85rem;
+  }
+
+  .navbar-content {
+    padding: 15px 30px;
+  }
+}
+
+/* Desktop Styles - Above 1024px */
+@media (min-width: 1025px) {
+  .mobile-menu-toggle {
+    display: none !important;
+  }
+
+  .nav-menu {
+    display: flex !important;
+  }
+
+  .admin-login-btn {
+    display: inline-block !important;
+  }
+}
 }

@@ -5,6 +5,7 @@ const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [queueData, setQueueData] = useState(null);
+  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [formData, setFormData] = useState({
     id_pelanggan: '',
     nama: '',
@@ -78,16 +79,118 @@ const LandingPage = () => {
             <img src="/logo-iconplus.png" alt="ICON PLUS Logo" className="logo-image" />
             <span className="logo-text">ICON PLUS JOGJA</span>
           </div>
+          
+          {/* Desktop Navigation */}
           <nav className="nav-menu">
             <a href="#features">Fitur</a>
             <a href="#service">Layanan</a>
             <a href="#about">Tentang</a>
             <a href="#contact">Kontak</a>
           </nav>
+          
           <Link to="/admin/login" className="admin-login-btn">
             Admin Login
           </Link>
+
+          {/* Mobile Hamburger Button */}
+          <button
+            className="mobile-menu-toggle"
+            onClick={() => setShowMobileMenu(!showMobileMenu)}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              background: 'transparent',
+              border: 'none',
+              color: '#333',
+              fontSize: '24px',
+              cursor: 'pointer',
+              padding: '8px',
+              width: '50px',
+              height: '50px'
+            }}
+          >
+            ☰
+          </button>
         </div>
+
+        {/* Mobile Dropdown Menu */}
+        {showMobileMenu && (
+          <div
+            style={{
+              backgroundColor: '#f8f9fa',
+              padding: '12px 20px',
+              borderTop: '1px solid #e0e0e0',
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '10px'
+            }}
+          >
+            <a 
+              href="#features" 
+              style={{ 
+                color: '#333', 
+                textDecoration: 'none',
+                padding: '10px 0',
+                borderBottom: '1px solid #eee'
+              }}
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Fitur
+            </a>
+            <a 
+              href="#service" 
+              style={{ 
+                color: '#333', 
+                textDecoration: 'none',
+                padding: '10px 0',
+                borderBottom: '1px solid #eee'
+              }}
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Layanan
+            </a>
+            <a 
+              href="#about" 
+              style={{ 
+                color: '#333', 
+                textDecoration: 'none',
+                padding: '10px 0',
+                borderBottom: '1px solid #eee'
+              }}
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Tentang
+            </a>
+            <a 
+              href="#contact" 
+              style={{ 
+                color: '#333', 
+                textDecoration: 'none',
+                padding: '10px 0',
+                borderBottom: '1px solid #eee'
+              }}
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Kontak
+            </a>
+            <Link 
+              to="/admin/login" 
+              style={{ 
+                color: '#fff',
+                textDecoration: 'none',
+                backgroundColor: '#17a2b8',
+                padding: '10px 16px',
+                borderRadius: '8px',
+                textAlign: 'center',
+                marginTop: '5px'
+              }}
+              onClick={() => setShowMobileMenu(false)}
+            >
+              Admin Login
+            </Link>
+          </div>
+        )}
       </header>
 
       <section 
