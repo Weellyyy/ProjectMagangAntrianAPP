@@ -203,9 +203,10 @@ const LandingPage = () => {
           minHeight: '800px',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'flex-end',
+          justifyContent: 'center',
           padding: '40px',
-          position: 'relative'
+          position: 'relative',
+          flexDirection: 'column'
         }}
       >
         <div 
@@ -219,7 +220,15 @@ const LandingPage = () => {
             pointerEvents: 'none'
           }}
         />
-        
+        <div style={{ position: 'relative', zIndex: 10, marginTop: 'auto' }}>
+          <button 
+            className="btn btn-primary" 
+            onClick={() => setShowForm(true)}
+            style={{ padding: '14px 32px', fontSize: '1rem' }}
+          >
+            Ambil Nomor Antrian
+          </button>
+        </div>
       </section>
 
       {/* Hero Section */}
