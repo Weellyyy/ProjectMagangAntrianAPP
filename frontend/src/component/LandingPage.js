@@ -482,7 +482,7 @@ const LandingPage = () => {
               </div>
 
               <div className="form-group">
-                <label htmlFor="nama">Nama Lengkap *</label>
+                <label htmlFor="nama">Nama Lengkap </label>
                 <input
                   type="text"
                   id="nama"
@@ -490,7 +490,6 @@ const LandingPage = () => {
                   value={formData.nama}
                   onChange={handleChange}
                   placeholder="Masukkan nama lengkap"
-                  required
                 />
               </div>
 
