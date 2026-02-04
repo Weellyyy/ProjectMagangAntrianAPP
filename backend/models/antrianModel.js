@@ -48,11 +48,14 @@ const antrianModel = {
       params.push(filters.status);
     }
 
+    if (filters.no_telp) {
+      query += ' AND no_telp LIKE ?';
+      params.push(`%${filters.no_telp}%`);
+    }
+
     if (filters.date) {
       query += ' AND DATE(created_at) = ?';
       params.push(filters.date);
-    } else {
-      query += ' AND DATE(created_at) = CURDATE()';
     }
 
     query += ' ORDER BY no_antrian ASC';

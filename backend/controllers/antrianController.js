@@ -51,13 +51,31 @@ const antrianController = {
 
   getAll: async (req, res) => {
     try {
-      const { status, date } = req.query;
+      const { status, date, no_telp } = req.query;
       const filters = {};
 
-      if (status) filters.status = status;
-      if (date) filters.date = date;
+      console.log('=== GET ALL ANTRIAN ===');
+      console.log('Received Query:', req.query);
+
+      if (status) {
+        filters.status = status;
+        console.log('Filter status:', status);
+      }
+      if (date) {
+        filters.date = date;
+        console.log('Filter date:', date);
+      }
+      if (no_telp) {
+        filters.no_telp = no_telp;
+        console.log('Filter no_telp:', no_telp);
+      }
+
+      console.log('Final Filters Object:', filters);
 
       const antrian = await antrianModel.getAll(filters);
+
+      console.log('Data returned:', antrian.length, 'records');
+      console.log('========================');
 
       res.json({
         success: true,
