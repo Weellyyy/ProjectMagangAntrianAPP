@@ -21,6 +21,7 @@ const ProtectedRoute = ({ children }) => {
         console.error('Token verification failed:', error);
         // Token tidak valid, hapus dari localStorage
         localStorage.removeItem('token');
+        localStorage.removeItem('user');
         setIsAuthenticated(false);
       }
     };

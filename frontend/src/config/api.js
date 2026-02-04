@@ -38,4 +38,83 @@ export const apiCall = async (url, options = {}) => {
 
   return response.json();
 };
-export default apiCall
+
+// API object with methods
+const api = {
+  get: async (url) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:3000${url}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error('Request failed');
+    }
+    
+    return response.json();
+  },
+  
+  post: async (url, data) => {
+    const token = localStorage.getItem('token');
+    const headers = {
+      'Content-Type': 'application/json'
+    };
+    
+    if (token) {
+      headers['Authorization'] = `Bearer ${token}`;
+    }
+    
+    const response = await fetch(`http://localhost:3000${url}`, {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(data)
+    });
+    
+    if (!response.ok) {
+      throw new Error('Request failed');
+    }
+    
+    return response.json();
+  },
+  
+  put: async (url, data) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:3000${url}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify(data)
+    });
+    
+    if (!response.ok) {
+      throw new Error('Request failed');
+    }
+    
+    return response.json();
+  },
+  
+  delete: async (url) => {
+    const token = localStorage.getItem('token');
+    const response = await fetch(`http://localhost:3000${url}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    });
+    
+    if (!response.ok) {
+      throw new Error('Request failed');
+    }
+    
+    return response.json();
+  }
+};
+
+export default api;
