@@ -854,10 +854,25 @@ code {
   display: flex;
   gap: 15px;
   margin-top: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .success-actions button {
   flex: 1;
+  min-width: 120px;
+}
+
+@media (max-width: 480px) {
+  .success-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .success-actions button {
+    width: 100%;
+    margin: 0 !important;
+  }
 }
 
 /* ========================================
