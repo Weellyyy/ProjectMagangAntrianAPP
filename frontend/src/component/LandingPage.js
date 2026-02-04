@@ -541,22 +541,11 @@ const LandingPage = () => {
               {/* Social Media */}
               <div className="social-media" style={{ marginTop: '15px' }}>
                 <h4 style={{ fontSize: '14px', marginBottom: '10px' }}>Ikuti Kami</h4>
-                <div style={{ display: 'flex', gap: '12px' }}>
-                  <button className="social-icon" style={{ color: '#3b5998' }} title="Facebook" onClick={() => window.open('https://facebook.com', '_blank')}>
-                    f
-                  </button>
-                  <button className="social-icon" style={{ color: '#1DA1F2' }} title="Twitter" onClick={() => window.open('https://twitter.com', '_blank')}>
-                    𝕏
-                  </button>
-                  <button className="social-icon" style={{ color: '#E4405F' }} title="Instagram" onClick={() => window.open('https://instagram.com', '_blank')}>
-                    📷
-                  </button>
-                  <button className="social-icon" style={{ color: '#0A66C2' }} title="LinkedIn" onClick={() => window.open('https://linkedin.com', '_blank')}>
-                    in
-                  </button>
-                  <button className="social-icon" style={{ color: '#25D366' }} title="WhatsApp" onClick={() => window.open('https://wa.me', '_blank')}>
-                    💬
-                  </button>
+                <div style={{ display: 'flex', gap: '18px' }}>
+                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-facebook"></i></a>
+                  <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-instagram"></i></a>
+                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fa-brands fa-x-twitter"></i></a>
+                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-linkedin"></i></a>
                 </div>
               </div>
             </div>
