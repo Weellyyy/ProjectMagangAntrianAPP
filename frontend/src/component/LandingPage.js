@@ -371,26 +371,8 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Contact Section */}
-      <section className="contact" id="contact">
-        <div className="container">
-          <h2>Hubungi Kami</h2>
-          <div className="contact-grid">
-            <div className="contact-item">
-              <span className="contact-icon">📞</span>
-              <p>0815-1550-0045</p>
-            </div>
-            <div className="contact-item">
-              <span className="contact-icon">📧</span>
-              <p>support@iconplus.com</p>
-            </div>
-            <div className="contact-item">
-              <span className="contact-icon">📍</span>
-              <p>Yogyakarta, Indonesia</p>
-            </div>
-          </div>
-        </div>
-      </section>
+     
+      
 
       {/* Modal Success - Tampilan Nomor Antrian */}
       {showSuccess && queueData && (
@@ -547,7 +529,95 @@ const LandingPage = () => {
       {/* Footer */}
       <footer className="footer">
         <div className="container">
-          <p>&copy; 2024 ICON PLUS. All rights reserved. | <button className="footer-link">Privacy Policy</button> | <button className="footer-link">Terms & Conditions</button></p>
+          <div className="footer-content">
+            {/* Footer Section 1: Logo & Description */}
+            <div className="footer-section footer-about">
+              <div className="footer-logo">
+                <img src="/iconnet.png" alt="ICON PLUS Logo" style={{ height: '50px', marginBottom: '10px' }} />
+                <h3>ICON PLUS JOGJA</h3>
+              </div>
+              <p>Sistem antrian customer service terpercaya untuk memberikan pengalaman terbaik kepada pelanggan setia kami.</p>
+              
+              {/* Social Media */}
+              <div className="social-media" style={{ marginTop: '15px' }}>
+                <h4 style={{ fontSize: '14px', marginBottom: '10px' }}>Ikuti Kami</h4>
+                <div style={{ display: 'flex', gap: '12px' }}>
+                  <button className="social-icon" style={{ color: '#3b5998' }} title="Facebook" onClick={() => window.open('https://facebook.com', '_blank')}>
+                    f
+                  </button>
+                  <button className="social-icon" style={{ color: '#1DA1F2' }} title="Twitter" onClick={() => window.open('https://twitter.com', '_blank')}>
+                    𝕏
+                  </button>
+                  <button className="social-icon" style={{ color: '#E4405F' }} title="Instagram" onClick={() => window.open('https://instagram.com', '_blank')}>
+                    📷
+                  </button>
+                  <button className="social-icon" style={{ color: '#0A66C2' }} title="LinkedIn" onClick={() => window.open('https://linkedin.com', '_blank')}>
+                    in
+                  </button>
+                  <button className="social-icon" style={{ color: '#25D366' }} title="WhatsApp" onClick={() => window.open('https://wa.me', '_blank')}>
+                    💬
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Footer Section 2: Quick Links */}
+            <div className="footer-section footer-links">
+              <h4>Menu Cepat</h4>
+              <ul>
+                <li><a href="#features">Fitur</a></li>
+                <li><a href="#service">Layanan</a></li>
+                <li><a href="#about">Tentang Kami</a></li>
+                <li><a href="#contact">Kontak</a></li>
+                <li><button className="footer-link">FAQ</button></li>
+              </ul>
+            </div>
+
+            {/* Footer Section 3: Services */}
+            <div className="footer-section footer-services">
+              <h4>Layanan Kami</h4>
+              <ul>
+                <li><a href="#service">Keluhan Jaringan</a></li>
+                <li><a href="#service">Deaktivasi</a></li>
+                <li><a href="#service">Billing</a></li>
+                <li><a href="#service">Lainnya</a></li>
+                <li><button className="footer-link">Lihat Semua</button></li>
+              </ul>
+            </div>
+
+            {/* Footer Section 4: Contact Info */}
+            <div className="footer-section footer-contact">
+              <h4>Hubungi Kami</h4>
+              <div className="contact-info" style={{ fontSize: '14px', lineHeight: '1.8' }}>
+                <p>
+                  <strong>📞 Telepon:</strong><br/>
+                  <a href="tel:08151550045" style={{ color: '#ffffff', textDecoration: 'none' }}>0815-1550-0045</a>
+                </p>
+                <p>
+                  <strong>📧 Email:</strong><br/>
+                  <a href="mailto:support@iconplus.com" style={{ color: '#ffffff', textDecoration: 'none' }}>support@iconplus.com</a>
+                </p>
+                <p>
+                  <strong>📍 Lokasi:</strong><br/>
+                  Yogyakarta, Indonesia
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Footer Bottom */}
+          <div className="footer-bottom">
+            <div className="footer-bottom-content">
+              <p>&copy; 2024 ICON PLUS JOGJA. All rights reserved.</p>
+              <div className="footer-bottom-links">
+                <button className="footer-link">Privacy Policy</button>
+                <span> | </span>
+                <button className="footer-link">Terms & Conditions</button>
+                <span> | </span>
+                <button className="footer-link">Sitemap</button>
+              </div>
+            </div>
+          </div>
         </div>
       </footer>
     </div>
