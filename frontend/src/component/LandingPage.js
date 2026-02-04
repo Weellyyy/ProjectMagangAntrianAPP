@@ -16,6 +16,341 @@ const LandingPage = () => {
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
+  const handlePrint = () => {
+    const printWindow = window.open('', '', 'width=600,height=600');
+    const printContent = `
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Nomor Antrian - ICON PLUS JOGJA</title>
+          <style>
+            * {
+              margin: 0;
+              padding: 0;
+              box-sizing: border-box;
+            }
+            body {
+              font-family: 'Segoe UI', Arial, sans-serif;
+              padding: 40px;
+              background: white;
+            }
+            .print-container {
+              max-width: 400px;
+              margin: 0 auto;
+              border: 3px solid #02B6D1;
+              border-radius: 12px;
+              padding: 30px;
+              text-align: center;
+            }
+            .logo-section {
+              margin-bottom: 20px;
+              padding-bottom: 20px;
+              border-bottom: 2px solid #eee;
+            }
+            .logo-section h1 {
+              color: #1A599E;
+              font-size: 24px;
+              margin-bottom: 5px;
+            }
+            .logo-section p {
+              color: #666;
+              font-size: 14px;
+            }
+            .queue-section {
+              margin: 30px 0;
+            }
+            .queue-label {
+              font-size: 16px;
+              color: #666;
+              margin-bottom: 10px;
+            }
+            .queue-number {
+              font-size: 72px;
+              font-weight: bold;
+              color: #02B6D1;
+              letter-spacing: 10px;
+              margin: 20px 0;
+            }
+            .info-section {
+              text-align: left;
+              margin: 20px 0;
+              padding: 20px;
+              background: #f9f9f9;
+              border-radius: 8px;
+            }
+            .info-row {
+              display: flex;
+              justify-content: space-between;
+              padding: 10px 0;
+              border-bottom: 1px solid #eee;
+            }
+            .info-row:last-child {
+              border-bottom: none;
+            }
+            .info-label {
+              font-weight: 600;
+              color: #333;
+            }
+            .info-value {
+              color: #666;
+            }
+            .instructions {
+              margin-top: 30px;
+              padding-top: 20px;
+              border-top: 2px solid #eee;
+              text-align: left;
+            }
+            .instructions h4 {
+              color: #1A599E;
+              margin-bottom: 10px;
+              font-size: 16px;
+            }
+            .instructions ul {
+              list-style: none;
+              padding: 0;
+            }
+            .instructions li {
+              padding: 8px 0;
+              color: #666;
+              font-size: 14px;
+            }
+            .instructions li:before {
+              content: "✓ ";
+              color: #02B6D1;
+              font-weight: bold;
+              margin-right: 8px;
+            }
+            .footer {
+              margin-top: 30px;
+              padding-top: 20px;
+              border-top: 2px solid #eee;
+              font-size: 12px;
+              color: #999;
+            }
+            @media print {
+              body {
+                padding: 20px;
+              }
+            }
+          </style>
+        </head>
+        <body>
+          <div class="print-container">
+            <div class="logo-section">
+              <h1>ICON PLUS JOGJA</h1>
+              <p>Sistem Antrian Customer Service</p>
+            </div>
+            
+            <div class="queue-section">
+              <div class="queue-label">Nomor Antrian Anda</div>
+              <div class="queue-number">${queueData?.no_antrian ? String(queueData.no_antrian).padStart(3, '0') : '---'}</div>
+            </div>
+            
+            <div class="info-section">
+              <div class="info-row">
+                <span class="info-label">ID Pelanggan:</span>
+                <span class="info-value">${queueData?.id_pelanggan || '-'}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Nama:</span>
+                <span class="info-value">${queueData?.nama || '-'}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">No. Telepon:</span>
+                <span class="info-value">${queueData?.no_telp || '-'}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Kategori:</span>
+                <span class="info-value">${queueData?.kategori_keluhan || '-'}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-label">Status:</span>
+                <span class="info-value">${queueData?.status || 'Menunggu'}</span>
+              </div>
+            </div>
+            
+            <div class="instructions">
+              <h4>Petunjuk Penting:</h4>
+              <ul>
+                <li>Catat nomor antrian Anda dengan baik</li>
+                <li>Tunggu panggilan sesuai nomor antrian</li>
+                <li>Pastikan telepon Anda aktif untuk menerima notifikasi</li>
+                <li>Jika nomor antrian hilang, hubungi customer service kami</li>
+              </ul>
+            </div>
+            
+            <div class="footer">
+              <p>Tanggal: ${new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
+              <p>Waktu: ${new Date().toLocaleTimeString('id-ID')}</p>
+            </div>
+          </div>
+        </body>
+      </html>
+    `;
+    
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    printWindow.focus();
+    setTimeout(() => {
+      printWindow.print();
+      printWindow.close();
+    }, 250);
+  };
+
+  const handleDownload = () => {
+    const canvas = document.createElement('canvas');
+    canvas.width = 600;
+    canvas.height = 800;
+    const ctx = canvas.getContext('2d');
+    
+    // Background
+    ctx.fillStyle = '#ffffff';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    // Border
+    ctx.strokeStyle = '#02B6D1';
+    ctx.lineWidth = 6;
+    ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+    
+    // Header
+    ctx.fillStyle = '#1A599E';
+    ctx.font = 'bold 32px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('ICON PLUS JOGJA', canvas.width / 2, 80);
+    
+    ctx.fillStyle = '#666666';
+    ctx.font = '18px Arial';
+    ctx.fillText('Sistem Antrian Customer Service', canvas.width / 2, 110);
+    
+    // Line
+    ctx.strokeStyle = '#eeeeee';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(60, 130);
+    ctx.lineTo(canvas.width - 60, 130);
+    ctx.stroke();
+    
+    // Queue Number Label
+    ctx.fillStyle = '#666666';
+    ctx.font = '20px Arial';
+    ctx.fillText('Nomor Antrian Anda', canvas.width / 2, 180);
+    
+    // Queue Number
+    ctx.fillStyle = '#02B6D1';
+    ctx.font = 'bold 80px Arial';
+    const queueNum = queueData?.no_antrian ? String(queueData.no_antrian).padStart(3, '0') : '---';
+    ctx.fillText(queueNum, canvas.width / 2, 260);
+    
+    // Info Box Background
+    ctx.fillStyle = '#f9f9f9';
+    ctx.fillRect(60, 300, canvas.width - 120, 240);
+    
+    // Info Details
+    ctx.fillStyle = '#333333';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'left';
+    
+    const infoY = 340;
+    const lineHeight = 40;
+    
+    ctx.fillText('ID Pelanggan:', 80, infoY);
+    ctx.fillStyle = '#666666';
+    ctx.font = '18px Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText(queueData?.id_pelanggan || '-', canvas.width - 80, infoY);
+    
+    ctx.fillStyle = '#333333';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Nama:', 80, infoY + lineHeight);
+    ctx.fillStyle = '#666666';
+    ctx.font = '18px Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText(queueData?.nama || '-', canvas.width - 80, infoY + lineHeight);
+    
+    ctx.fillStyle = '#333333';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('No. Telepon:', 80, infoY + lineHeight * 2);
+    ctx.fillStyle = '#666666';
+    ctx.font = '18px Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText(queueData?.no_telp || '-', canvas.width - 80, infoY + lineHeight * 2);
+    
+    ctx.fillStyle = '#333333';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Kategori:', 80, infoY + lineHeight * 3);
+    ctx.fillStyle = '#666666';
+    ctx.font = '18px Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText(queueData?.kategori_keluhan || '-', canvas.width - 80, infoY + lineHeight * 3);
+    
+    ctx.fillStyle = '#333333';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'left';
+    ctx.fillText('Status:', 80, infoY + lineHeight * 4);
+    ctx.fillStyle = '#666666';
+    ctx.font = '18px Arial';
+    ctx.textAlign = 'right';
+    ctx.fillText(queueData?.status || 'Menunggu', canvas.width - 80, infoY + lineHeight * 4);
+    
+    // Line
+    ctx.strokeStyle = '#eeeeee';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(60, 570);
+    ctx.lineTo(canvas.width - 60, 570);
+    ctx.stroke();
+    
+    // Instructions
+    ctx.fillStyle = '#1A599E';
+    ctx.font = 'bold 18px Arial';
+    ctx.textAlign = 'center';
+    ctx.fillText('Petunjuk Penting', canvas.width / 2, 610);
+    
+    ctx.fillStyle = '#666666';
+    ctx.font = '14px Arial';
+    ctx.textAlign = 'left';
+    const instructions = [
+      '✓ Catat nomor antrian Anda dengan baik',
+      '✓ Tunggu panggilan sesuai nomor antrian',
+      '✓ Pastikan telepon Anda aktif',
+      '✓ Hubungi CS jika nomor hilang'
+    ];
+    
+    instructions.forEach((text, index) => {
+      ctx.fillText(text, 80, 640 + (index * 25));
+    });
+    
+    // Footer
+    ctx.strokeStyle = '#eeeeee';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    ctx.moveTo(60, 740);
+    ctx.lineTo(canvas.width - 60, 740);
+    ctx.stroke();
+    
+    ctx.fillStyle = '#999999';
+    ctx.font = '12px Arial';
+    ctx.textAlign = 'center';
+    const date = new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    const time = new Date().toLocaleTimeString('id-ID');
+    ctx.fillText(`${date} - ${time}`, canvas.width / 2, 765);
+    
+    // Convert to blob and download
+    canvas.toBlob((blob) => {
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Nomor-Antrian-${queueNum}-ICONPLUS.png`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    });
+  };
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     
@@ -424,6 +759,20 @@ const LandingPage = () => {
             </div>
 
             <div className="success-actions">
+              <button 
+                className="btn btn-secondary" 
+                onClick={handlePrint}
+                style={{ marginRight: '10px' }}
+              >
+                🖨️ Print
+              </button>
+              <button 
+                className="btn btn-secondary" 
+                onClick={handleDownload}
+                style={{ marginRight: '10px' }}
+              >
+                📥 Download
+              </button>
               <button 
                 className="btn btn-primary" 
                 onClick={() => setShowSuccess(false)}
