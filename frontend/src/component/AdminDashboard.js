@@ -179,41 +179,56 @@ const AdminDashboard = () => {
   return (
     <div className="admin-dashboard">
       {/* Sidebar */}
-      <aside className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}>
-        <div className="sidebar-header">
-          <div className="sidebar-logo">
-            <img src="/logobulat.png" alt="ICON PLUS Logo" className="logo-image" />
-            {/* <span className="sidebar-icon">📊</span> */}
-            {sidebarOpen && <span className="sidebar-title">ICON PLUS</span>}
-          </div>
-          <button 
-            className="sidebar-toggle"
-            onClick={() => setSidebarOpen(!sidebarOpen)}
-          >
-            {sidebarOpen ? '◀' : '▶'}
-          </button>
+      <aside 
+      className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}
+      onClick={() => !sidebarOpen && setSidebarOpen(true)}
+    >
+      
+      {/* 2. onClick di Header: Menangani saat sidebar TERBUKA (klik logo untuk tutup).
+         e.stopPropagation() penting agar klik ini tidak bentrok dengan event parent.
+      */}
+      <div 
+        className="sidebar-header" 
+        onClick={(e) => {
+          if (sidebarOpen) {
+            e.stopPropagation(); // Cegah event bubbling
+            setSidebarOpen(false);
+          }
+        }}
+        title={sidebarOpen ? "Klik untuk mengecilkan sidebar" : "Klik untuk memperlebar"}
+      >
+        <div className="sidebar-brand">
+          <img src="/logobulat.png" alt="ICON PLUS Logo" className="logo-image" />
+          
+          <span className={`sidebar-title ${!sidebarOpen && 'hidden'}`}>
+            ICON PLUS
+          </span>
         </div>
+        
+        {/* Opsional: Tambahkan indikator visual kecil (hamburger/panah) di header */}
+        {sidebarOpen && <span className="close-indicator">◀</span>}
+      </div>
 
-        <nav className="sidebar-nav">
-          <button
-            className={`sidebar-item ${activeTab === 'antrian' ? 'active' : ''}`}
-            onClick={() => setActiveTab('antrian')}
-          >
-            <FiList size={20} className="sidebar-icon" />
-            {sidebarOpen && <span>Data Antrian</span>}
-          </button>
+      {/* Navigasi - Kita perlu stopPropagation saat klik menu agar sidebar tidak 'berkedip' */}
+      <nav className="sidebar-nav">
+        <button
+          className={`sidebar-item ${activeTab === 'antrian' ? 'active' : ''}`}
+          onClick={(e) => { e.stopPropagation(); setActiveTab('antrian'); }}
+        >
+          <FiList size={20} className="sidebar-icon" />
+          {sidebarOpen && <span>Data Antrian</span>}
+        </button>
 
-          <button
-            className={`sidebar-item ${activeTab === 'statistics' ? 'active' : ''}`}
-            onClick={() => setActiveTab('statistics')}
-          >
-            <FiBarChart2 size={20} className="sidebar-icon" />
-            {sidebarOpen && <span>Statistik</span>}
-          </button>
+        <button
+          className={`sidebar-item ${activeTab === 'statistics' ? 'active' : ''}`}
+          onClick={(e) => { e.stopPropagation(); setActiveTab('statistics'); }}
+        >
+          <FiBarChart2 size={20} className="sidebar-icon" />
+          {sidebarOpen && <span>Statistik</span>}
+        </button>
+      </nav>
 
-        </nav>
-
-        <div className="sidebar-footer">
+      <div className="sidebar-footer">
           <div className="sidebar-user" title={user.username}>
             <FiUser size={20} className="sidebar-icon" />
             {sidebarOpen && (
@@ -222,18 +237,18 @@ const AdminDashboard = () => {
               </span>
             )}
           </div>
+          </div>
 
-          <button
-            onClick={handleLogout}
-            className="sidebar-logout"
-            title="Logout"
-          >
+      {/* Footer juga perlu diproteksi */}
+      <div className="sidebar-footer" onClick={(e) => e.stopPropagation()}>
+         {/* ... isi footer ... */}
+         {/* Tombol Logout */}
+         <button onClick={handleLogout} className="sidebar-logout">
             <FiLogOut size={20} className="sidebar-icon" />
             {sidebarOpen && <span>Logout</span>}
-          </button>
-
-        </div>
-      </aside>
+         </button>
+      </div>
+    </aside>
 
       {/* Main Content */}
       <div className="admin-main">
