@@ -85,6 +85,8 @@ code {
   height: 40px;
   width: auto;
   object-fit: contain;
+  flex-shrink: 0; /* Gambar tidak boleh gepeng */
+  transition: all 0.3s;
 }
 
 .logo-text {
@@ -2478,12 +2480,7 @@ code {
   overflow: hidden; /* Potong teks jika sidebar menutup */
 }
 
-.logo-image {
-  width: 35px;
-  height: 35px;
-  object-fit: contain;
-  flex-shrink: 0; /* Gambar tidak boleh gepeng */
-}
+
 
 .sidebar-title {
   font-weight: 700;
@@ -2695,13 +2692,6 @@ code {
 }
 
 /* GAMBAR LOGO */
-.logo-image {
-  width: 38px;  /* Ukuran pas */
-  height: 38px;
-  object-fit: contain;
-  flex-shrink: 0; /* Mencegah logo gepeng saat animasi */
-  transition: all 0.3s;
-}
 
 /* TEKS JUDUL (ICON PLUS) */
 .sidebar-title {
