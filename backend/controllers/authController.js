@@ -117,6 +117,27 @@ const authController = {
         message: 'Terjadi kesalahan'
       });
     }
+  },
+
+  verifyToken: async (req, res) => {
+    try {
+      // Jika sampai sini, berarti token valid (sudah diverifikasi oleh middleware authenticateToken)
+      res.json({
+        success: true,
+        message: 'Token valid',
+        data: {
+          id: req.user.id,
+          username: req.user.username,
+          role: req.user.role
+        }
+      });
+    } catch (error) {
+      console.error('Verify token error:', error);
+      res.status(500).json({
+        success: false,
+        message: 'Terjadi kesalahan saat verifikasi token'
+      });
+    }
   }
 };
 

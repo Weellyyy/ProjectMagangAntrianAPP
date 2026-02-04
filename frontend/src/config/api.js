@@ -38,3 +38,4 @@ export const apiCall = async (url, options = {}) => {
 
   return response.json();
 };
+export default apiCall
