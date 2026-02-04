@@ -468,7 +468,7 @@ const LandingPage = () => {
 
             <form onSubmit={handleSubmit}>
               <div className="form-group">
-                <label htmlFor="id_pelanggan">ID Pelanggan *</label>
+                <label htmlFor="id_pelanggan">ID Pelanggan </label>
                 <input
                   type="number"
                   id="id_pelanggan"
@@ -476,7 +476,6 @@ const LandingPage = () => {
                   value={formData.id_pelanggan}
                   onChange={handleChange}
                   placeholder="Masukkan ID pelanggan"
-                  required
                   autoFocus
                   min="0"
                 />
