@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiLogOut, FiList, FiBarChart2 } from "react-icons/fi";
+import React, { useState, useEffect, useCallback } from 'react'; // Tambah useCallback
 
 
 const AdminDashboard = () => {
@@ -26,18 +26,17 @@ const AdminDashboard = () => {
     }
   }, [token, navigate]);
 
-  const fetchAntrian = async (filterParams = {}) => {
+  // Bungkus fungsi dengan useCallback
+  const fetchAntrian = useCallback(async (filterParams = {}) => {
     if (!token) return;
     setLoading(true);
     try {
-      // Filter out empty values
+      // Logika pembersihan filter (tetap sama)
       const cleanFilters = Object.fromEntries(
         Object.entries(filterParams).filter(([_, v]) => v !== '')
       );
       
       const queryParams = new URLSearchParams(cleanFilters).toString();
-      console.log('Filters:', cleanFilters);
-      console.log('Query Params:', queryParams);
       
       const response = await fetch(`http://localhost:3000/api/antrian?${queryParams}`, {
         headers: {
@@ -58,7 +57,7 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [token]); // Dependency: Fungsi ini hanya dibuat ulang kalau token berubah
 
   const fetchStatistics = async () => {
     if (!token) return;
@@ -141,14 +140,40 @@ const AdminDashboard = () => {
     }
   };
 
+  // ... import dan state lainnya
+
+  // 1. HAPUS atau UBAH handleFilterChange yang lama
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    const newFilters = { ...filters, [name]: value };
-    setFilters(newFilters);
-    if (name === 'status' || name === 'date' || name === 'no_telp') {
-      fetchAntrian(newFilters);
+    // Update state saja, jangan langsung fetchAntrian di sini untuk no_telp
+    setFilters(prev => ({ ...prev, [name]: value }));
+    
+    // Jika filter bukan no_telp (misal status/date), boleh langsung fetch
+    if (name !== 'no_telp') {
+      fetchAntrian({ ...filters, [name]: value });
     }
   };
+
+  // 2. TAMBAHKAN useEffect khusus untuk memantau perubahan no_telp (Debounce)
+  useEffect(() => {
+    // Cek token dulu
+    if (!token) return;
+
+    // Setup Debounce (jeda waktu)
+    const timeoutId = setTimeout(() => {
+      // Panggil fetchAntrian dengan filter terbaru
+      fetchAntrian(filters);
+    }, 500); // Jeda 500ms
+
+    // Cleanup function (ini yang membatalkan timer kalau user ngetik lagi)
+    return () => clearTimeout(timeoutId);
+
+    // DEPENDENCY ARRAY LENGKAP & RESMI:
+    // React akan memantau 'filters' dan 'fetchAntrian'.
+    // Karena fetchAntrian sudah di-useCallback, dia aman & stabil.
+  }, [filters, fetchAntrian, token]);
+
+// ... sisa kode lainnya
 
   useEffect(() => {
     if (token && activeTab === 'antrian') {

@@ -48,10 +48,20 @@ const antrianModel = {
       params.push(filters.status);
     }
 
+    // --- BAGIAN INI YANG DIMODIFIKASI ---
     if (filters.no_telp) {
+      // OPSI A: Pencarian Fleksibel (Mengandung angka tersebut) -> REKOMENDASI
+      // User ketik "123", akan muncul "08123...", "085123..."
       query += ' AND no_telp LIKE ?';
-      params.push(`%${filters.no_telp}%`);
+      params.push(`%${filters.no_telp}%`); 
+      
+      /* // OPSI B: Pencarian Sama Persis (Exact Match)
+      // User harus mengetik nomor lengkap. Ketik "081" tidak akan muncul apa-apa.
+      query += ' AND no_telp = ?';
+      params.push(filters.no_telp);
+      */
     }
+    // ------------------------------------
 
     if (filters.date) {
       query += ' AND DATE(created_at) = ?';
