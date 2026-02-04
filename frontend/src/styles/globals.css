@@ -2668,3 +2668,75 @@ code {
   transform: translateX(-3px); /* Animasi gerak dikit */
   opacity: 1;
 }
+
+/* ========================================
+   FIX: SIDEBAR LOGO TETAP MUNCUL
+   ======================================== */
+
+/* --- HEADER STYLE --- */
+.sidebar-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  /* Default (Open): Ada padding kiri kanan */
+  padding: 0 20px; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  overflow: hidden; /* Penting biar ga bocor */
+}
+
+/* Container Logo & Teks */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+/* GAMBAR LOGO */
+.logo-image {
+  width: 38px;  /* Ukuran pas */
+  height: 38px;
+  object-fit: contain;
+  flex-shrink: 0; /* Mencegah logo gepeng saat animasi */
+  transition: all 0.3s;
+}
+
+/* TEKS JUDUL (ICON PLUS) */
+.sidebar-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  opacity: 1;
+  white-space: nowrap; /* Teks memanjang ke samping */
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+
+/* --- LOGIKA SAAT SIDEBAR TERTUTUP (CLOSED) --- */
+
+/* 1. Hilangkan padding header biar bisa benar-benar di tengah */
+.admin-sidebar.closed .sidebar-header {
+  padding: 0;
+  justify-content: center;
+}
+
+/* 2. KUNCI UTAMA: Tampilkan Brand, tapi set ke tengah */
+.admin-sidebar.closed .sidebar-brand {
+  display: flex !important; /* Paksa muncul */
+  justify-content: center;  /* Logo ke tengah */
+  width: 100%;
+  gap: 0; /* Hilangkan jarak karena teks hilang */
+}
+
+/* 3. Sembunyikan Teks Judulnya saja */
+.admin-sidebar.closed .sidebar-title {
+  display: none; /* Hilang total dari layout */
+  opacity: 0;
+}
+
+/* 4. Sesuaikan ukuran logo saat tertutup (Opsional, biar lebih manis) */
+.admin-sidebar.closed .logo-image {
+  width: 42px; /* Sedikit diperbesar saat sendirian */
+  height: 42px;
+}
