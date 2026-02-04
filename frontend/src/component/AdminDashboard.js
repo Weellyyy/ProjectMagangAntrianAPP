@@ -140,40 +140,28 @@ const AdminDashboard = () => {
     }
   };
 
-  // ... import dan state lainnya
-
-  // 1. HAPUS atau UBAH handleFilterChange yang lama
+ 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
-    // Update state saja, jangan langsung fetchAntrian di sini untuk no_telp
     setFilters(prev => ({ ...prev, [name]: value }));
     
-    // Jika filter bukan no_telp (misal status/date), boleh langsung fetch
     if (name !== 'no_telp') {
       fetchAntrian({ ...filters, [name]: value });
     }
   };
 
-  // 2. TAMBAHKAN useEffect khusus untuk memantau perubahan no_telp (Debounce)
   useEffect(() => {
-    // Cek token dulu
     if (!token) return;
 
-    // Setup Debounce (jeda waktu)
     const timeoutId = setTimeout(() => {
-      // Panggil fetchAntrian dengan filter terbaru
       fetchAntrian(filters);
-    }, 500); // Jeda 500ms
+    }, 500); 
 
-    // Cleanup function (ini yang membatalkan timer kalau user ngetik lagi)
     return () => clearTimeout(timeoutId);
 
-    // DEPENDENCY ARRAY LENGKAP & RESMI:
-    // React akan memantau 'filters' dan 'fetchAntrian'.
-    // Karena fetchAntrian sudah di-useCallback, dia aman & stabil.
+    
   }, [filters, fetchAntrian, token]);
 
-// ... sisa kode lainnya
 
   useEffect(() => {
     if (token && activeTab === 'antrian') {
