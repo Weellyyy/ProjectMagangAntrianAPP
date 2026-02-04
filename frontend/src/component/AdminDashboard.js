@@ -10,13 +10,14 @@ const AdminDashboard = () => {
   const [statistics, setStatistics] = useState(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
-  const [filters, setFilters] = useState({ status: '', date: '' });
+  const [filters, setFilters] = useState({ status: '', date: '', no_telp: '' });
   const [token, setToken] = useState(localStorage.getItem('token'));
   const [user] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
   const [sidebarOpen, setSidebarOpen] = useState(true);
   
   // --- STATE BARU: Untuk Modal Detail ---
   const [selectedKeluhan, setSelectedKeluhan] = useState(null);
+  const [totalPengunjung, setTotalPengunjung] = useState(0);
 
   // Check authentication
   useEffect(() => {
@@ -29,7 +30,15 @@ const AdminDashboard = () => {
     if (!token) return;
     setLoading(true);
     try {
-      const queryParams = new URLSearchParams(filterParams).toString();
+      // Filter out empty values
+      const cleanFilters = Object.fromEntries(
+        Object.entries(filterParams).filter(([_, v]) => v !== '')
+      );
+      
+      const queryParams = new URLSearchParams(cleanFilters).toString();
+      console.log('Filters:', cleanFilters);
+      console.log('Query Params:', queryParams);
+      
       const response = await fetch(`http://localhost:3000/api/antrian?${queryParams}`, {
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -40,6 +49,7 @@ const AdminDashboard = () => {
       const data = await response.json();
       if (data.success) {
         setAntrian(data.data);
+        setTotalPengunjung(data.data.length);
       } else {
         setMessage('✗ Gagal mengambil data antrian');
       }
@@ -135,7 +145,7 @@ const AdminDashboard = () => {
     const { name, value } = e.target;
     const newFilters = { ...filters, [name]: value };
     setFilters(newFilters);
-    if (name === 'status' || name === 'date') {
+    if (name === 'status' || name === 'date' || name === 'no_telp') {
       fetchAntrian(newFilters);
     }
   };
@@ -275,6 +285,15 @@ const AdminDashboard = () => {
               onChange={handleFilterChange}
               className="filter-select"
             />
+
+            <input
+              type="text"
+              name="no_telp"
+              placeholder="Cari No. Telepon"
+              value={filters.no_telp}
+              onChange={handleFilterChange}
+              className="filter-select"
+            />
           </div>
 
           {loading ? (
@@ -382,13 +401,16 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* Statistik Content (Tetap Sama) */}
       {activeTab === 'statistics' && (
         <div className="tab-content">
           {loading ? (
             <div className="loading">Memuat statistik...</div>
           ) : statistics ? (
             <div className="statistics-container">
+              <div className="stat-card">
+                <h3>Total Riwayat Pengunjung</h3>
+                <p className="stat-value">{totalPengunjung || 0}</p>
+              </div>
               <div className="stat-card">
                 <h3>Total Antrian</h3>
                 <p className="stat-value">{statistics.total || 0}</p>
