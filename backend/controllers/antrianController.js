@@ -5,10 +5,10 @@ const antrianController = {
     try {
       const { id_pelanggan, nama, no_telp, kategori_keluhan, detail_keluhan } = req.body;
 
-      if (!nama || !no_telp || !kategori_keluhan) {
+      if (!no_telp || !kategori_keluhan) {
         return res.status(400).json({
           success: false,
-          message: 'Nama, nomor telepon, dan kategori keluhan harus diisi'
+          message: 'Nomor telepon dan kategori keluhan harus diisi'
         });
       }
 
