@@ -4,10 +4,11 @@ import api from '../config/api';
 
 const ProtectedRoute = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const token = localStorage.getItem('token');
 
   useEffect(() => {
     const verifyToken = async () => {
+      const token = sessionStorage.getItem('token');
+      
       if (!token) {
         setIsAuthenticated(false);
         return;
@@ -19,15 +20,15 @@ const ProtectedRoute = ({ children }) => {
         setIsAuthenticated(true);
       } catch (error) {
         console.error('Token verification failed:', error);
-        // Token tidak valid, hapus dari localStorage
-        localStorage.removeItem('token');
-        localStorage.removeItem('user');
+        // Token tidak valid, hapus dari sessionStorage
+        sessionStorage.removeItem('token');
+        sessionStorage.removeItem('user');
         setIsAuthenticated(false);
       }
     };
 
     verifyToken();
-  }, [token]);
+  }, []);
 
   // Loading state saat memverifikasi token
   if (isAuthenticated === null) {

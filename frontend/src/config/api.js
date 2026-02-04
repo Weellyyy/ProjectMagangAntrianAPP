@@ -21,7 +21,7 @@ export const API_ENDPOINTS = {
 
 // Helper function untuk fetch dengan authorization
 export const apiCall = async (url, options = {}) => {
-  const token = localStorage.getItem('token');
+  const token = sessionStorage.getItem('token');
   const headers = {
     'Content-Type': 'application/json',
     ...options.headers
@@ -42,7 +42,7 @@ export const apiCall = async (url, options = {}) => {
 // API object with methods
 const api = {
   get: async (url) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const response = await fetch(`http://localhost:3000${url}`, {
       method: 'GET',
       headers: {
@@ -59,7 +59,7 @@ const api = {
   },
   
   post: async (url, data) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const headers = {
       'Content-Type': 'application/json'
     };
@@ -82,7 +82,7 @@ const api = {
   },
   
   put: async (url, data) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const response = await fetch(`http://localhost:3000${url}`, {
       method: 'PUT',
       headers: {
@@ -100,7 +100,7 @@ const api = {
   },
   
   delete: async (url) => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     const response = await fetch(`http://localhost:3000${url}`, {
       method: 'DELETE',
       headers: {
