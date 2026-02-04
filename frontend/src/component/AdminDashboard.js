@@ -11,8 +11,8 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [filters, setFilters] = useState({ status: '', date: '', no_telp: '' });
-  const [token, setToken] = useState(localStorage.getItem('token'));
-  const [user] = useState(JSON.parse(localStorage.getItem('user') || '{}'));
+  const [token, setToken] = useState(sessionStorage.getItem('token'));
+  const [user] = useState(JSON.parse(sessionStorage.getItem('user') || '{}'));
   const [sidebarOpen, setSidebarOpen] = useState(true);
   
   // --- STATE BARU: Untuk Modal Detail ---
@@ -84,8 +84,8 @@ const AdminDashboard = () => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem('token');
-    localStorage.removeItem('user');
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('user');
     setToken(null);
     navigate('/admin/login');
   };

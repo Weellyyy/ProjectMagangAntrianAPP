@@ -14,7 +14,7 @@ const AdminLogin = () => {
 
   // Check if already logged in
   React.useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = sessionStorage.getItem('token');
     if (token) {
       navigate('/admin');
     }
@@ -45,8 +45,8 @@ const AdminLogin = () => {
       const data = await response.json();
 
       if (data.success) {
-        localStorage.setItem('token', data.data.token);
-        localStorage.setItem('user', JSON.stringify(data.data.user));
+        sessionStorage.setItem('token', data.data.token);
+        sessionStorage.setItem('user', JSON.stringify(data.data.user));
         setMessage('Login berhasil! Mengarahkan...');
         setTimeout(() => {
           navigate('/admin');
