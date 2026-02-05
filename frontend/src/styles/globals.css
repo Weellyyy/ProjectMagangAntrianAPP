@@ -94,6 +94,7 @@ code {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  font-size: 25px;
 }
 
 .nav-menu {
@@ -1896,18 +1897,38 @@ code {
    RESPONSIVE DESIGN
    ======================================== */
 @media (max-width: 768px) {
+  /* Navbar Mobile - Lebih Compact */
   .navbar-content {
-    padding: 15px 20px;
-    flex-direction: column;
-    gap: 15px;
+    padding: 10px 16px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
   }
 
+  .logo {
+    font-size: 1.1rem;
+    flex: 1;
+  }
+
+  .logo-image {
+    height: 32px;
+  }
+
+  /* Sembunyikan menu desktop di mobile */
   .nav-menu {
-    gap: 20px;
-    order: 3;
-    width: 100%;
-    flex-direction: column;
-    text-align: center;
+    display: none;
+  }
+
+  .admin-login-btn {
+    display: none;
+  }
+
+  /* Tampilkan hamburger button di mobile */
+  .mobile-menu-toggle {
+    display: block !important;
+    order: 2;
+    margin-left: auto;
   }
 
   .hero-container {
