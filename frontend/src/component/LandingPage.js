@@ -13,7 +13,10 @@ import {
   FiPhone, 
   FiMail, 
   FiMapPin,
-  FiCheckCircle
+  FiCheckCircle,
+  FiFileText,
+  FiPrinter,
+  FiDownload
 } from "react-icons/fi";
 
 const LandingPage = () => {
@@ -744,7 +747,7 @@ const LandingPage = () => {
             </div>
 
             <div className="queue-instructions">
-              <h4>📋 Petunjuk Penting:</h4>
+              <h4><FiFileText /> Petunjuk Penting:</h4>
               <ul>
                 <li>Catat nomor antrian Anda dengan baik</li>
                 <li>Tunggu panggilan sesuai nomor antrian</li>
@@ -759,14 +762,14 @@ const LandingPage = () => {
                 onClick={handlePrint}
                 style={{ marginRight: '10px' }}
               >
-                🖨️ Print
+                <FiPrinter /> Print
               </button>
               <button 
                 className="btn btn-secondary" 
                 onClick={handleDownload}
                 style={{ marginRight: '10px' }}
               >
-                📥 Download
+                <FiDownload /> Download
               </button>
               <button 
                 className="btn btn-primary" 
@@ -930,7 +933,7 @@ const LandingPage = () => {
           {/* Footer Bottom */}
           <div className="footer-bottom">
             <div className="footer-bottom-content">
-              <p>&copy; © 2026 All rights reserved. ICONNET powered by PT Indonesia Comnets Plus</p>
+              <p>&copy; 2026 All rights reserved. ICONNET powered by PT Indonesia Comnets Plus</p>
               <div className="footer-bottom-links">
                 <a href="https://iconnet.id/kebijakan-privasi" target="_blank" rel="noopener noreferrer" className="footer-link">Kebijakan Privasi</a>
                 <span> | </span>

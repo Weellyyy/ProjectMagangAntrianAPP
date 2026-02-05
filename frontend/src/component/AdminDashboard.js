@@ -281,13 +281,13 @@ const AdminDashboard = () => {
             className={`tab-btn ${activeTab === 'antrian' ? 'active' : ''}`}
             onClick={() => setActiveTab('antrian')}
           >
-            📋 Data Antrian
+            <FiList /> Data Antrian
           </button>
           <button 
             className={`tab-btn ${activeTab === 'statistics' ? 'active' : ''}`}
             onClick={() => setActiveTab('statistics')}
           >
-            📈 Statistik
+            <FiBarChart2 /> Statistik
           </button>
         </div>
 
