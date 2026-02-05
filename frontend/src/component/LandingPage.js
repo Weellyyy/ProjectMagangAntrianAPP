@@ -1,6 +1,19 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/globals.css';
+import { 
+  FiGlobe, 
+  FiSlash, 
+  FiCreditCard, 
+  FiHelpCircle,
+  FiZap,
+  FiSmartphone,
+  FiUsers,
+  FiLock,
+  FiPhone, 
+  FiMail, 
+  FiMapPin
+} from "react-icons/fi";
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -595,22 +608,30 @@ const LandingPage = () => {
           <h2>Layanan Kami</h2>
           <div className="services-grid">
             <div className="service-card">
-              <div className="service-icon">🌐</div>
+              <div className="service-icon">
+                <FiGlobe size={32} />
+              </div>
               <h3>Keluhan Jaringan</h3>
               <p>Lapor dan selesaikan masalah koneksi jaringan dengan cepat</p>
             </div>
             <div className="service-card">
-              <div className="service-icon">🚫</div>
+              <div className="service-icon">
+                <FiSlash size={32} />
+              </div>
               <h3>Deaktivasi</h3>
               <p>Proses deaktivasi layanan dengan mudah melalui sistem kami</p>
             </div>
             <div className="service-card">
-              <div className="service-icon">💳</div>
+              <div className="service-icon">
+                <FiCreditCard size={32} />
+              </div>
               <h3>Billing</h3>
               <p>Konsultasi dan pertanyaan seputar tagihan dan pembayaran</p>
             </div>
             <div className="service-card">
-              <div className="service-icon">❓</div>
+              <div className="service-icon">
+                <FiHelpCircle size={32} />
+              </div>
               <h3>Lainnya</h3>
               <p>Berbagai keluhan dan pertanyaan lainnya dapat kami tangani</p>
             </div>
@@ -625,33 +646,23 @@ const LandingPage = () => {
           <div className="features-grid">
             <div className="feature-card">
               <div className="feature-number">01</div>
-              <h3>⚡ Cepat & Efisien</h3>
+              <h3><FiZap size={32} /> Cepat & Efisien</h3>
               <p>Antrian online yang menghemat waktu Anda hingga 80%</p>
             </div>
             <div className="feature-card">
               <div className="feature-number">02</div>
-              <h3>📱 Mudah Diakses</h3>
+              <h3><FiSmartphone size={32} /> Mudah Diakses</h3>
               <p>Dapat diakses dari smartphone, tablet, atau komputer</p>
             </div>
             <div className="feature-card">
               <div className="feature-number">03</div>
-              <h3>👥 Tim Profesional</h3>
+              <h3><FiUsers size={32} /> Tim Profesional</h3>
               <p>Tim customer service berpengalaman siap melayani Anda</p>
             </div>
             <div className="feature-card">
               <div className="feature-number">04</div>
-              <h3>🔒 Aman & Terpercaya</h3>
+              <h3><FiLock size={32} /> Aman & Terpercaya</h3>
               <p>Data pribadi Anda dilindungi dengan standar keamanan tinggi</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-number">05</div>
-              <h3>📊 Real-time Update</h3>
-              <p>Pantau posisi antrian Anda secara real-time</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-number">06</div>
-              <h3>🕐 Tersedia 24/7</h3>
-              <p>Layanan tersedia sepanjang jam kerja setiap harinya</p>
             </div>
           </div>
         </div>
@@ -874,10 +885,10 @@ const LandingPage = () => {
               <div className="social-media" style={{ marginTop: '15px' }}>
                 <h4 style={{ fontSize: '14px', marginBottom: '10px' }}>Ikuti Kami</h4>
                 <div style={{ display: 'flex', gap: '18px' }}>
-                  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-facebook"></i></a>
-                  <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-instagram"></i></a>
-                  <a href="https://x.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fa-brands fa-x-twitter"></i></a>
-                  <a href="https://www.linkedin.com" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-linkedin"></i></a>
+                  <a href="https://www.facebook.com/iconnet.by.plnicon.plus/" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-facebook"></i></a>
+                  <a href="https://www.instagram.com/iconnet_yogyakarta/" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-instagram"></i></a>
+                  <a href="https://www.youtube.com/@iconnet.official" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fa-brands fa-youtube"></i></a>
+                  <a href="https://www.tiktok.com/@iconnet.plniconplus" target="_blank" rel="noopener noreferrer" style={{ color: '#ffffff', fontSize: '20px', transition: 'opacity 0.3s ease', cursor: 'pointer' }} onMouseEnter={(e) => e.target.style.opacity = '0.8'} onMouseLeave={(e) => e.target.style.opacity = '1'}><i className="fab fa-tiktok"></i></a>
                 </div>
               </div>
             </div>
@@ -894,32 +905,22 @@ const LandingPage = () => {
               </ul>
             </div>
 
-            {/* Footer Section 3: Services */}
-            <div className="footer-section footer-services">
-              <h4>Layanan Kami</h4>
-              <ul>
-                <li><a href="#service">Keluhan Jaringan</a></li>
-                <li><a href="#service">Deaktivasi</a></li>
-                <li><a href="#service">Billing</a></li>
-                <li><a href="#service">Lainnya</a></li>
-                <li><button className="footer-link">Lihat Semua</button></li>
-              </ul>
-            </div>
+            
 
             {/* Footer Section 4: Contact Info */}
             <div className="footer-section footer-contact">
               <h4>Hubungi Kami</h4>
               <div className="contact-info" style={{ fontSize: '14px', lineHeight: '1.8' }}>
                 <p>
-                  <strong>📞 Telepon:</strong><br/>
+                  <strong><FiPhone size={20} /> Telepon:</strong><br/>
                   <a href="tel:08151550045" style={{ color: '#ffffff', textDecoration: 'none' }}>0815-1550-0045</a>
                 </p>
                 <p>
-                  <strong>📧 Email:</strong><br/>
-                  <a href="mailto:support@iconplus.com" style={{ color: '#ffffff', textDecoration: 'none' }}>support@iconplus.com</a>
+                  <strong><FiMail size={20} /> Email:</strong><br/>
+                  <a href="mailto:cc.iconnet@iconpln.co.id" style={{ color: '#ffffff', textDecoration: 'none' }}>cc.iconnet@iconpln.co.id</a>
                 </p>
                 <p>
-                  <strong>📍 Lokasi:</strong><br/>
+                  <strong><FiMapPin size={20} /> Lokasi:</strong><br/>
                   Yogyakarta, Indonesia
                 </p>
               </div>
@@ -929,7 +930,7 @@ const LandingPage = () => {
           {/* Footer Bottom */}
           <div className="footer-bottom">
             <div className="footer-bottom-content">
-              <p>&copy; 2024 ICON PLUS Yogyakarta. All rights reserved.</p>
+              <p>&copy; © 2026 All rights reserved. ICONNET powered by PT Indonesia Comnets Plus</p>
               <div className="footer-bottom-links">
                 <button className="footer-link">Privacy Policy</button>
                 <span> | </span>
