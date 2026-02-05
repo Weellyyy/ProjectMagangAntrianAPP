@@ -411,10 +411,10 @@ const LandingPage = () => {
       {/* Header */}
       <header className="navbar">
         <div className="navbar-content">
-          <div className="logo">
+          <Link to="/admin/login" className="logo" style={{ cursor: 'pointer', textDecoration: 'none' }}>
             <img src="/iconnet.png" alt="ICON PLUS Logo" className="logo-image" />
             <span className="logo-text">ICON PLUS JOGJA</span>
-          </div>
+          </Link>
           
           {/* Desktop Navigation */}
           <nav className="nav-menu">
@@ -423,10 +423,6 @@ const LandingPage = () => {
             <a href="#about">Tentang</a>
             <a href="#contact">Kontak</a>
           </nav>
-          
-          <Link to="/admin/login" className="admin-login-btn">
-            Admin Login
-          </Link>
 
           {/* Mobile Hamburger Button */}
           <button
@@ -510,21 +506,6 @@ const LandingPage = () => {
             >
               Kontak
             </a>
-            <Link 
-              to="/admin/login" 
-              style={{ 
-                color: '#fff',
-                textDecoration: 'none',
-                backgroundColor: '#17a2b8',
-                padding: '10px 16px',
-                borderRadius: '8px',
-                textAlign: 'center',
-                marginTop: '5px'
-              }}
-              onClick={() => setShowMobileMenu(false)}
-            >
-              Admin Login
-            </Link>
           </div>
         )}
       </header>
