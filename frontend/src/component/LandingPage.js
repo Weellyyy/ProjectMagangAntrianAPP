@@ -529,11 +529,12 @@ const LandingPage = () => {
       <section 
         className="hero" 
         style={{
+          width: '100%', 
           backgroundImage: "url('/FotoLP1.png')",
           backgroundSize: 'cover',
           backgroundPosition: 'center top',
           backgroundRepeat: 'no-repeat',
-          minHeight: '800px',
+          minHeight: '600px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',

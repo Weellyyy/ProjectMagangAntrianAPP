@@ -2757,7 +2757,7 @@ code {
    FIX: MOBILE BACKGROUND (FLUID HEIGHT METHOD)
    ========================================= */
 
-@media only screen and (max-width: 768px) { /* Kita naikkan batas pixel biar tablet juga kena */
+@media only screen and (max-width: 1080px) { /* Kita naikkan batas pixel biar tablet juga kena */
   
   /* 1. Ubah container utama agar tingginya tidak maksa 100% layar, 
         tapi mengikuti tinggi gambar */
