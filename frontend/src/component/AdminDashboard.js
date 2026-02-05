@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiLogOut, FiList, FiBarChart2, FiTrash } from "react-icons/fi";
 import React, { useState, useEffect, useCallback } from 'react'; // Tambah useCallback
+import '../styles/globals.css';
+import '../styles/AdminDashboard.css';
 
 
 const AdminDashboard = () => {

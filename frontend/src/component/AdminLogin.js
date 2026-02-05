@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { FiUser, FiLock, FiEye, FiEyeOff } from "react-icons/fi";
+import '../styles/globals.css';
+import '../styles/AdminLogin.css';
 
 const AdminLogin = () => {
   const [formData, setFormData] = useState({

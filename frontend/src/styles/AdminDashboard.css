@@ -1,0 +1,936 @@
+/* ========================================
+   ADMIN DASHBOARD STYLES
+   ======================================== */
+.admin-dashboard {
+  min-height: 100vh;
+  background: var(--light-gray);
+  display: flex;
+}
+
+/* Sidebar */
+.admin-sidebar {
+  width: 280px;
+  background: linear-gradient(180deg, var(--secondary) 0%, #0d3d6e 100%);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 99;
+  overflow-y: auto;
+}
+
+.admin-sidebar.closed {
+  width: 80px;
+}
+
+.sidebar-header {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.sidebar-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-logo .sidebar-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+/* Ukuran Icon Logo di Sidebar */
+.sidebar-logo .logo-image {
+  width: 42px;
+  height: 42px;
+  object-fit: contain;
+}
+
+.sidebar-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-toggle {
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: var(--white);
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+  flex: 1;
+  padding: 20px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-item {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.sidebar-item .sidebar-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--white);
+}
+
+.sidebar-item.active {
+  background: rgba(2, 182, 209, 0.3);
+  color: var(--primary);
+  border-right: 3px solid var(--primary);
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 15px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.sidebar-user {
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-user .sidebar-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-username {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sidebar-logout {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.sidebar-logout .sidebar-icon {
+  font-size: 1.2rem;
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+}
+
+.sidebar-logout:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ff6b6b;
+}
+
+/* Admin Main Content */
+.admin-main {
+  flex: 1;
+  margin-left: 280px;
+  transition: margin-left 0.3s ease;
+  width: calc(100% - 280px);
+}
+
+.admin-sidebar.closed~.admin-main {
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+/* Admin Header */
+.admin-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 30px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.header-content h1 {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+/* Dashboard Title dengan Icon */
+.dashboard-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.dashboard-title svg {
+  width: 26px;
+  height: 26px;
+}
+
+.header-content p {
+  margin: 5px 0 0 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-info {
+  background: rgba(255, 255, 255, 0.2);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logout-btn {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  border: 2px solid white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+  font-size: 0.95rem;
+}
+
+.logout-btn:hover {
+  background: white;
+  color: var(--secondary);
+}
+
+/* Tabs */
+.tabs {
+  max-width: 1200px;
+  margin: 20px auto;
+  display: flex;
+  gap: 10px;
+  padding: 0 20px;
+  border-bottom: 2px solid #ddd;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  color: #666;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 3px solid transparent;
+  transition: all 0.3s;
+  margin-bottom: -2px;
+}
+
+.tab-btn:hover {
+  color: var(--primary);
+}
+
+.tab-btn.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+}
+
+/* Tab Content */
+.tab-content {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Filters */
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-select {
+  padding: 10px 15px;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: border-color 0.3s;
+}
+
+.filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+/* Table */
+.table-container {
+  overflow-x: auto;
+}
+
+.antrian-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.antrian-table thead {
+  background: #f8f9fa;
+}
+
+.antrian-table th {
+  padding: 15px;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 2px solid #ddd;
+}
+
+.antrian-table td {
+  padding: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.antrian-table tbody tr:hover {
+  background: #f8f9fa;
+}
+
+.status-select {
+  padding: 8px 12px;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s;
+}
+
+.status-select:focus {
+  outline: none;
+}
+
+.status-select.status-menunggu {
+  color: #ff9800;
+  border-color: #ff9800;
+}
+
+.status-select.status-dilayani {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.status-select.status-selesai {
+  color: #4caf50;
+  border-color: #4caf50;
+}
+
+.delete-btn {
+  background: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.delete-btn:hover {
+  background: #d32f2f;
+}
+
+.no-data {
+  text-align: center;
+  padding: 40px;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* Statistics */
+.statistics-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.stat-card {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-5px);
+}
+
+.stat-card h3 {
+  margin: 0 0 15px 0;
+  font-size: 0.95rem;
+  opacity: 0.9;
+  font-weight: 600;
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.stat-value.menunggu {
+  color: #ffc107;
+}
+
+.stat-value.dilayani {
+  color: #00bcd4;
+}
+
+.stat-value.selesai {
+  color: #4caf50;
+}
+
+/* Loading */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--primary);
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* --- Styling Kolom Detail di Tabel --- */
+.detail-column {
+  max-width: 200px;
+}
+
+.keluhan-text-box {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* Membuat teks jadi titik-titik (...) jika kepanjangan */
+  font-size: 0.85rem;
+  color: var(--text-gray);
+  margin-bottom: 5px;
+}
+
+.view-detail-btn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+}
+
+.view-detail-btn:hover {
+  color: var(--secondary);
+}
+
+/* --- Styling Modal Detail --- */
+.detail-modal {
+  max-width: 600px !important;
+  padding: 0 !important; /* Kita atur padding di header/body */
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 20px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: white !important;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+}
+
+.modal-body {
+  padding: 25px;
+  background: white;
+}
+
+.full-keluhan {
+  margin-top: 20px;
+  background: var(--light-gray);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid var(--primary);
+}
+
+.full-keluhan p {
+  margin-top: 10px;
+  line-height: 1.6;
+  color: var(--dark-gray);
+  word-wrap: break-word; /* Memastikan teks panjang turun ke bawah */
+}
+
+.modal-footer {
+  padding: 15px 25px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* Responsive Dashboard */
+@media (max-width: 768px) {
+  .admin-header {
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .header-content h1 {
+    font-size: 1.3rem;
+  }
+
+  .header-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .admin-sidebar {
+    width: 70px;
+  }
+
+  .admin-sidebar .sidebar-title,
+  .admin-sidebar .sidebar-username,
+  .admin-sidebar .sidebar-logout span {
+    display: none;
+  }
+
+  .admin-main {
+    margin-left: 70px;
+    width: calc(100% - 70px);
+  }
+
+  .tabs {
+    flex-wrap: wrap;
+  }
+
+  .tab-btn {
+    flex: 1;
+    text-align: center;
+  }
+
+  .filters {
+    flex-direction: column;
+  }
+
+  .filter-select {
+    width: 100%;
+  }
+
+  .antrian-table {
+    font-size: 0.85rem;
+  }
+
+  .antrian-table th,
+  .antrian-table td {
+    padding: 10px;
+  }
+
+  .statistics-container {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-card {
+    padding: 20px;
+  }
+
+  .stat-value {
+    font-size: 2rem;
+  }
+}
+
+/* ========================================
+   ADMIN DASHBOARD LAYOUT (PERBAIKAN)
+   ======================================== */
+
+/* Container Utama Dashboard */
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--light-gray);
+  position: relative;
+  overflow-x: hidden; /* Mencegah scroll horizontal aneh */
+}
+
+/* --- SIDEBAR STYLES --- */
+.admin-sidebar {
+  background: linear-gradient(180deg, var(--secondary) 0%, #0d3d6e 100%);
+  color: var(--white);
+  height: 100vh;
+  position: fixed; /* Sidebar tetap mengambang di kiri */
+  top: 0;
+  left: 0;
+  z-index: 1000; /* Pastikan di atas konten lain */
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden; /* Sembunyikan konten yang melebar saat ditutup */
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  white-space: nowrap; /* Mencegah teks turun ke baris baru (menumpuk) */
+}
+
+/* Lebar Sidebar Kondisi Terbuka/Tertutup */
+.admin-sidebar.open {
+  width: 260px; /* Ukuran standar yang pas */
+}
+
+.admin-sidebar.closed {
+  width: 70px; /* Cukup untuk menampilkan icon saja */
+}
+
+/* --- SIDEBAR HEADER (Bagian Logo & Toggle) --- */
+.sidebar-header {
+  height: 70px; /* Tinggi tetap agar tidak goyang */
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Logo di kiri, Toggle di kanan */
+  padding: 0 15px; /* Jarak aman kiri kanan */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Grup Logo & Teks */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  overflow: hidden; /* Potong teks jika sidebar menutup */
+}
+
+
+
+.sidebar-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  opacity: 1;
+  transition: opacity 0.2s;
+}
+
+/* Hilangkan teks saat sidebar tertutup */
+.sidebar-title.hidden,
+.admin-sidebar.closed .sidebar-title {
+  opacity: 0;
+  width: 0;
+  display: none;
+}
+
+/* Tombol Toggle */
+.sidebar-toggle {
+  background: rgba(255, 255, 255, 0.15);
+  border: none;
+  color: white;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+  flex-shrink: 0; /* Tombol tidak boleh mengecil */
+}
+
+.sidebar-toggle:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Penyesuaian Tombol Toggle saat Closed */
+.admin-sidebar.closed .sidebar-header {
+  justify-content: center; /* Tengahkan isi header saat tertutup */
+  padding: 0;
+}
+
+.admin-sidebar.closed .sidebar-brand {
+  display: none; /* Sembunyikan logo/teks saat tertutup agar tombol toggle jelas */
+  /* OPSI LAIN: Jika ingin logo tetap ada, hapus baris ini dan sembunyikan toggle-nya */
+}
+
+/* --- MAIN CONTENT (Agar tidak tertutup sidebar) --- */
+.admin-main {
+  flex-grow: 1;
+  transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  padding: 0;
+  min-height: 100vh;
+  /* KUNCI AGAR TIDAK MENUMPUK: */
+  margin-left: 260px; /* Samakan dengan lebar sidebar open */
+  width: calc(100% - 260px);
+}
+
+/* Main Content saat Sidebar Tertutup */
+.admin-sidebar.closed ~ .admin-main {
+  margin-left: 70px; /* Samakan dengan lebar sidebar closed */
+  width: calc(100% - 70px);
+}
+
+/* --- ITEM NAVIGASI --- */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  padding: 15px 20px; /* Padding nyaman */
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  transition: all 0.2s;
+  height: 50px; /* Tinggi konsisten */
+}
+
+.sidebar-item:hover, .sidebar-item.active {
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  border-right: 4px solid var(--primary); /* Indikator aktif di kanan */
+}
+
+.sidebar-icon {
+  font-size: 1.2rem;
+  min-width: 30px; /* Lebar tetap icon agar teks lurus */
+  display: flex;
+  justify-content: center;
+}
+
+/* Sembunyikan teks menu saat tertutup */
+.admin-sidebar.closed .sidebar-item span {
+  display: none;
+}
+
+/* ========================================
+   CLICKABLE SIDEBAR STYLES
+   ======================================== */
+
+.admin-sidebar {
+  /* Style dasar sama seperti sebelumnya */
+  background: linear-gradient(180deg, var(--secondary) 0%, #0d3d6e 100%);
+  color: var(--white);
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+  overflow-x: hidden;
+}
+
+/* KONDISI TERTUTUP: Sidebar jadi tombol raksasa */
+.admin-sidebar.closed {
+  width: 80px;
+  cursor: pointer; /* Tangan menunjuk (tanda bisa diklik) */
+}
+
+/* Efek hover saat tertutup biar user makin ngeh */
+.admin-sidebar.closed:hover {
+  background: linear-gradient(180deg, #2a6db6 0%, #104a85 100%); /* Sedikit lebih terang */
+  width: 85px; /* Sedikit 'mengintip' */
+}
+
+/* KONDISI TERBUKA: Normal */
+.admin-sidebar.open {
+  width: 260px;
+  cursor: default; /* Cursor panah biasa */
+}
+
+/* HEADER STYLE */
+.sidebar-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  padding: 0 15px; /* Jarak kiri kanan */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  user-select: none; /* Biar teks ga ke-blok pas klik-klik */
+}
+
+/* Saat terbuka, Header jadi tombol tutup */
+.admin-sidebar.open .sidebar-header {
+  cursor: pointer;
+}
+
+.admin-sidebar.open .sidebar-header:hover {
+  background: rgba(255, 255, 255, 0.1); /* Efek hover di header */
+}
+
+/* Mengatur posisi konten header */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1; /* Biar ngisi ruang */
+  overflow: hidden;
+}
+
+/* Penyesuaian saat Closed */
+.admin-sidebar.closed .sidebar-header {
+  justify-content: center;
+  padding: 0;
+}
+
+.admin-sidebar.closed .sidebar-brand {
+  justify-content: center;
+}
+
+/* Indicator Panah Kecil (Opsional) */
+.close-indicator {
+  font-size: 0.8rem;
+  opacity: 0.7;
+  transition: transform 0.2s;
+}
+.sidebar-header:hover .close-indicator {
+  transform: translateX(-3px); /* Animasi gerak dikit */
+  opacity: 1;
+}
+
+/* ========================================
+   FIX: SIDEBAR LOGO TETAP MUNCUL
+   ======================================== */
+
+/* --- HEADER STYLE --- */
+.sidebar-header {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  /* Default (Open): Ada padding kiri kanan */
+  padding: 0 20px; 
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s;
+  overflow: hidden; /* Penting biar ga bocor */
+}
+
+/* Container Logo & Teks */
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+/* GAMBAR LOGO */
+
+/* TEKS JUDUL (ICON PLUS) */
+.sidebar-title {
+  font-weight: 700;
+  font-size: 1.1rem;
+  opacity: 1;
+  white-space: nowrap; /* Teks memanjang ke samping */
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+
+/* --- LOGIKA SAAT SIDEBAR TERTUTUP (CLOSED) --- */
+
+/* 1. Hilangkan padding header biar bisa benar-benar di tengah */
+.admin-sidebar.closed .sidebar-header {
+  padding: 0;
+  justify-content: center;
+}
+
+/* 2. KUNCI UTAMA: Tampilkan Brand, tapi set ke tengah */
+.admin-sidebar.closed .sidebar-brand {
+  display: flex !important; /* Paksa muncul */
+  justify-content: center;  /* Logo ke tengah */
+  width: 100%;
+  gap: 0; /* Hilangkan jarak karena teks hilang */
+}
+
+/* 3. Sembunyikan Teks Judulnya saja */
+.admin-sidebar.closed .sidebar-title {
+  display: none; /* Hilang total dari layout */
+  opacity: 0;
+}
+
+/* 4. Sesuaikan ukuran logo saat tertutup (Opsional, biar lebih manis) */
+.admin-sidebar.closed .logo-image {
+  width: 42px; /* Sedikit diperbesar saat sendirian */
+  height: 42px;
+}
