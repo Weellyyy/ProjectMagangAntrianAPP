@@ -871,7 +871,7 @@ const LandingPage = () => {
       )}
 
       {/* Footer */}
-      <footer className="footer">
+      <footer className="footer" id='contact'>
         <div className="container">
           <div className="footer-content">
             {/* Footer Section 1: Logo & Description */}
@@ -933,11 +933,11 @@ const LandingPage = () => {
             <div className="footer-bottom-content">
               <p>&copy; © 2026 All rights reserved. ICONNET powered by PT Indonesia Comnets Plus</p>
               <div className="footer-bottom-links">
-                <button className="footer-link">Privacy Policy</button>
+                <a href="https://iconnet.id/kebijakan-privasi" target="_blank" rel="noopener noreferrer" className="footer-link">Kebijakan Privasi</a>
                 <span> | </span>
-                <button className="footer-link">Terms & Conditions</button>
+                <a href="https://iconnet.id/panduan/syarat-ketentuan" target="_blank" rel="noopener noreferrer" className="footer-link">Syarat & Ketentuan</a>
                 <span> | </span>
-                <button className="footer-link">Sitemap</button>
+                <a href="https://maps.app.goo.gl/jE43Bi51Fn7hLb4U9" target="_blank" rel="noopener noreferrer" className="footer-link">Sitemap</a>
               </div>
             </div>
           </div>
