@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { FiUser, FiLogOut, FiList, FiBarChart2 } from "react-icons/fi";
+import { FiUser, FiLogOut, FiList, FiBarChart2, FiTrash } from "react-icons/fi";
 import React, { useState, useEffect, useCallback } from 'react'; // Tambah useCallback
 
 
@@ -380,7 +380,9 @@ const AdminDashboard = () => {
                         </td>
                         <td>{item.created_at ? new Date(item.created_at).toLocaleString('id-ID') : '-'}</td>
                         <td>
-                          <button onClick={() => handleDelete(item.id_pengunjung)} className="delete-btn">🗑️</button>
+                          <button onClick={() => handleDelete(item.id_pengunjung)} className="delete-btn">
+                            <FiTrash />
+                          </button>
                         </td>
                       </tr>
                     ))
