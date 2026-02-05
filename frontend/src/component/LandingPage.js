@@ -12,7 +12,8 @@ import {
   FiLock,
   FiPhone, 
   FiMail, 
-  FiMapPin
+  FiMapPin,
+  FiCheckCircle
 } from "react-icons/fi";
 
 const LandingPage = () => {
@@ -676,10 +677,10 @@ const LandingPage = () => {
               <h2>Tentang ICON PLUS</h2>
               <p>ICON PLUS adalah solusi sistem antrian customer service terdepan yang dirancang untuk meningkatkan pengalaman pelanggan. Dengan teknologi terkini dan antarmuka yang user-friendly, kami memastikan setiap pelanggan mendapatkan layanan terbaik.</p>
               <ul className="about-list">
-                <li>✓ Teknologi Cloud-based Modern</li>
-                <li>✓ Terintegrasi dengan Sistem CRM</li>
-                <li>✓ Laporan Analitik Lengkap</li>
-                <li>✓ Support Tim Professional</li>
+                <li><FiCheckCircle /> Teknologi Cloud-based Modern</li>
+                <li><FiCheckCircle /> Terintegrasi dengan Sistem CRM</li>
+                <li><FiCheckCircle /> Laporan Analitik Lengkap</li>
+                <li><FiCheckCircle /> Support Tim Professional</li>
               </ul>
             </div>
             <div className="about-stats">
