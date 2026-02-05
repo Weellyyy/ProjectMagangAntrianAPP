@@ -23,7 +23,7 @@ const LandingPage = () => {
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Nomor Antrian - ICON PLUS JOGJA</title>
+          <title>Nomor Antrian - ICON PLUS Yogyakarta</title>
           <style>
             * {
               margin: 0;
@@ -138,7 +138,7 @@ const LandingPage = () => {
         <body>
           <div class="print-container">
             <div class="logo-section">
-              <h1>ICON PLUS JOGJA</h1>
+              <h1>ICON PLUS Yogyakarta</h1>
               <p>Sistem Antrian Customer Service</p>
             </div>
             
@@ -217,7 +217,7 @@ const LandingPage = () => {
     ctx.fillStyle = '#1A599E';
     ctx.font = 'bold 32px Arial';
     ctx.textAlign = 'center';
-    ctx.fillText('ICON PLUS JOGJA', canvas.width / 2, 80);
+    ctx.fillText('ICON PLUS Yogyakarta', canvas.width / 2, 80);
     
     ctx.fillStyle = '#666666';
     ctx.font = '18px Arial';
@@ -413,7 +413,6 @@ const LandingPage = () => {
         <div className="navbar-content">
           <Link to="/admin/login" className="logo" style={{ cursor: 'pointer', textDecoration: 'none' }}>
             <img src="/iconnet.png" alt="ICON PLUS Logo" className="logo-image" />
-            <span className="logo-text">ICON PLUS JOGJA</span>
           </Link>
           
           {/* Desktop Navigation */}
@@ -577,7 +576,7 @@ const LandingPage = () => {
       <section className="hero">
         <div className="hero-container">
           <div className="hero-left">
-            <h1>Selamat Datang di<br /><span className="highlight">ICON PLUS JOGJA</span></h1>
+            <h1>Selamat Datang di<br /><span className="highlight">ICON PLUS Yogyakarta</span></h1>
             <p>Sistem antrian customer service yang modern, cepat, dan terpercaya untuk layanan terbaik Anda.</p>
             <div className="hero-buttons">
               <button className="btn btn-primary" onClick={() => setShowForm(true)}>
@@ -867,7 +866,7 @@ const LandingPage = () => {
             <div className="footer-section footer-about">
               <div className="footer-logo">
                 <img src="/iconnet.png" alt="ICON PLUS Logo" style={{ height: '50px', marginBottom: '10px' }} />
-                <h3>ICON PLUS JOGJA</h3>
+                <h3>ICON PLUS Yogyakarta</h3>
               </div>
               <p>Sistem antrian customer service terpercaya untuk memberikan pengalaman terbaik kepada pelanggan setia kami.</p>
               
@@ -930,7 +929,7 @@ const LandingPage = () => {
           {/* Footer Bottom */}
           <div className="footer-bottom">
             <div className="footer-bottom-content">
-              <p>&copy; 2024 ICON PLUS JOGJA. All rights reserved.</p>
+              <p>&copy; 2024 ICON PLUS Yogyakarta. All rights reserved.</p>
               <div className="footer-bottom-links">
                 <button className="footer-link">Privacy Policy</button>
                 <span> | </span>
