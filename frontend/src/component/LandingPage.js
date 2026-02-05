@@ -902,7 +902,6 @@ const LandingPage = () => {
                 <li><a href="#service">Layanan</a></li>
                 <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#contact">Kontak</a></li>
-                <li><button className="footer-link">FAQ</button></li>
               </ul>
             </div>
 
