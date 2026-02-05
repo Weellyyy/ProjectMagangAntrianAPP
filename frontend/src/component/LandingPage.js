@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/globals.css';
 
 const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -559,11 +560,36 @@ const LandingPage = () => {
           <button 
             className="btn btn-primary" 
             onClick={() => setShowForm(true)}
-            style={{ padding: '14px 32px', fontSize: '1rem' }}
+            style={{ 
+              padding: '14px 32px', 
+              fontSize: '1rem',
+              // --- MODIFIKASI DI SINI ---
+              opacity: 0,            // Membuat tombol 100% transparan (tidak terlihat)
+              cursor: 'default',     // Mengubah kursor agar tidak berubah jadi gambar tangan (opsional)
+              pointerEvents: 'none'  // Tambahkan ini jika Anda ingin tombolnya TIDAK BISA diklik juga
+            }}
           >
             Ambil Nomor Antrian
           </button>
         </div>
+        <div style={{ position: 'relative', zIndex: 10, marginTop: 'auto' }}>
+          <button 
+            className="btn btn-primary" 
+            onClick={() => setShowForm(true)}
+            style={{ 
+              padding: '14px 32px', 
+              fontSize: '1rem',
+              // --- MODIFIKASI DI SINI ---
+              opacity: 0,            // Membuat tombol 100% transparan (tidak terlihat)
+              cursor: 'default',     // Mengubah kursor agar tidak berubah jadi gambar tangan (opsional)
+              pointerEvents: 'none'  // Tambahkan ini jika Anda ingin tombolnya TIDAK BISA diklik juga
+            }}
+          >
+            Ambil Nomor Antrian
+          </button>
+        </div>
+        
+        
       </section>
 
       {/* Hero Section */}

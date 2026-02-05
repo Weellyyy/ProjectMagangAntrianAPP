@@ -2730,3 +2730,43 @@ code {
   width: 42px; /* Sedikit diperbesar saat sendirian */
   height: 42px;
 }
+
+
+/* =========================================
+   FIX: MOBILE BACKGROUND (FLUID HEIGHT METHOD)
+   ========================================= */
+
+@media only screen and (max-width: 768px) { /* Kita naikkan batas pixel biar tablet juga kena */
+  
+  /* 1. Ubah container utama agar tingginya tidak maksa 100% layar, 
+        tapi mengikuti tinggi gambar */
+  .hero {
+    height: auto !important; 
+    min-height: unset !important;
+    position: relative; /* Penting untuk overlay */
+  }
+
+  /* 2. Ubah Gambar jadi elemen 'cair' (mengalir) */
+  .hero .hero-bg {
+    position: relative !important; /* Tidak lagi absolute melayang */
+    width: 100% !important;        /* Lebar penuh */
+    height: auto !important;       /* Tinggi menyesuaikan proporsi gambar */
+    object-fit: contain !important;
+    z-index: 1;
+  }
+
+  /* 3. Pastikan tulisan/konten tetap menimpa gambar */
+  .hero-overlay, 
+  .hero-content {
+    position: absolute !important;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 2; 
+    
+    /* Opsional: Jika teks jadi sulit dibaca karena gambar mengecil, 
+       tambahkan background semi-transparan */
+    /* background: rgba(0,0,0,0.4); */ 
+  }
+}
