@@ -605,30 +605,7 @@ const LandingPage = () => {
             </div>
           </div>
 
-          <div className="hero-right">
-            <div className="phone-mockup">
-              <div className="phone-screen">
-                <div className="screen-header">
-                  <span>ICON PLUS JOGJA</span>
-                </div>
-                <div className="screen-content">
-                  <div className="queue-card">
-                    <div className="queue-number">001</div>
-                    <div className="queue-status">Menunggu</div>
-                  </div>
-                  <div className="feature-item">
-                    <span>✓</span> Antrian Cepat
-                  </div>
-                  <div className="feature-item">
-                    <span>✓</span> Mudah Digunakan
-                  </div>
-                  <div className="feature-item">
-                    <span>✓</span> Akses 24/7
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
+          
         </div>
       </section>
 
