@@ -1085,17 +1085,68 @@
   }
 }
 
-/* ========================================
-   RESPONSIVE DESIGN - MOBILE MENU
-   ======================================== */
+
+.mobile-logos {
+  display: none;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  flex: 1;
+}
+
+.mobile-logo-item {
+  height: 28px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mobile-logo-center {
+  height: 32px;
+}
+
+/* Hamburger menu button */
 .mobile-menu-toggle {
-  display: none !important;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.hamburger-line {
+  display: block;
+  width: 26px;
+  height: 3px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
 }
 
 /* Mobile Styles - Below 768px */
 @media (max-width: 768px) {
   .navbar-content {
-    padding: 15px 20px;
+    padding: 15px 16px;
+    gap: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Hide desktop logo on mobile */
+  .desktop-logo {
+    display: none !important;
+  }
+
+  /* Show mobile logos */
+  .mobile-logos {
+    display: flex !important;
   }
 
   /* Hide desktop nav menu */
@@ -1145,12 +1196,25 @@
   .navbar-content {
     padding: 15px 30px;
   }
+
+  /* Hide mobile logos on tablet */
+  .mobile-logos {
+    display: none !important;
+  }
 }
 
 /* Desktop Styles - Above 1024px */
 @media (min-width: 1025px) {
   .mobile-menu-toggle {
     display: none !important;
+  }
+
+  .mobile-logos {
+    display: none !important;
+  }
+
+  .desktop-logo {
+    display: flex !important;
   }
 
   .nav-menu {

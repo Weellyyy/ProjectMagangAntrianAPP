@@ -429,9 +429,19 @@ const LandingPage = () => {
       {/* Header */}
       <header className="navbar">
         <div className="navbar-content">
-          <Link to="/admin/login" className="logo" style={{ cursor: 'pointer', textDecoration: 'none' }}>
+          {/* Desktop: Single ICONNET logo with admin link */}
+          <Link to="/admin/login" className="logo desktop-logo" style={{ cursor: 'pointer', textDecoration: 'none' }}>
             <img src="/iconnet.png" alt="ICON PLUS Logo" className="logo-image" />
           </Link>
+          
+          {/* Mobile: Three logos layout */}
+          <div className="mobile-logos">
+            <img src="/LogoPLNicon.png" alt="PLN Icon Plus" className="mobile-logo-item" />
+            <Link to="/admin/login" style={{ cursor: 'pointer' }}>
+              <img src="/iconnet.png" alt="ICONNET" className="mobile-logo-item mobile-logo-center" />
+            </Link>
+            <img src="/Logo Danantara.png" alt="Danantara Indonesia" className="mobile-logo-item" />
+          </div>
           
           {/* Desktop Navigation */}
           <nav className="nav-menu">
@@ -445,21 +455,11 @@ const LandingPage = () => {
           <button
             className="mobile-menu-toggle"
             onClick={() => setShowMobileMenu(!showMobileMenu)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              background: 'transparent',
-              border: 'none',
-              color: '#333',
-              fontSize: '24px',
-              cursor: 'pointer',
-              padding: '8px',
-              width: '50px',
-              height: '50px'
-            }}
+            aria-label="Menu"
           >
-            ☰
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
+            <span className="hamburger-line"></span>
           </button>
         </div>
 
