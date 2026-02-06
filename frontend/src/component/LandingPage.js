@@ -435,11 +435,11 @@ const LandingPage = () => {
           
           {/* Mobile: Three logos layout */}
           <div className="mobile-logos">
-            <img src="/LogoPLNicon.png" alt="PLN Icon Plus" className="mobile-logo-item" />
+            <img src="/Logo Danantara.png" alt="Danantara Indonesia" className="mobile-logo-item" />
             <Link to="/admin/login" style={{ cursor: 'pointer' }}>
               <img src="/iconnet.png" alt="ICONNET" className="mobile-logo-item mobile-logo-center" />
             </Link>
-            <img src="/Logo Danantara.png" alt="Danantara Indonesia" className="mobile-logo-item" />
+            <img src="/LogoPLNicon.png" alt="PLN Icon Plus" className="mobile-logo-item" />
           </div>
           
           {/* Desktop Navigation */}
@@ -449,69 +449,7 @@ const LandingPage = () => {
             <a href="#contact">Kontak</a>
           </nav>
 
-          {/* Mobile Hamburger Button */}
-          <button
-            className="mobile-menu-toggle"
-            onClick={() => setShowMobileMenu(!showMobileMenu)}
-            aria-label="Menu"
-          >
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-            <span className="hamburger-line"></span>
-          </button>
-        </div>
-
-        {/* Mobile Dropdown Menu */}
-        {showMobileMenu && (
-          <div
-            style={{
-              backgroundColor: '#f8f9fa',
-              padding: '12px 20px',
-              borderTop: '1px solid #e0e0e0',
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '10px'
-            }}
-          >
-            <a 
-              href="#features" 
-              style={{ 
-                color: '#333', 
-                textDecoration: 'none',
-                padding: '10px 0',
-                borderBottom: '1px solid #eee'
-              }}
-              onClick={() => setShowMobileMenu(false)}
-            >
-              Fitur
-            </a>
-            <a 
-              href="#service" 
-              style={{ 
-                color: '#333', 
-                textDecoration: 'none',
-                padding: '10px 0',
-                borderBottom: '1px solid #eee'
-              }}
-              onClick={() => setShowMobileMenu(false)}
-            >
-              Layanan
-            </a>
-            
-            <a 
-              href="#contact" 
-              style={{ 
-                color: '#333', 
-                textDecoration: 'none',
-                padding: '10px 0',
-                borderBottom: '1px solid #eee'
-              }}
-              onClick={() => setShowMobileMenu(false)}
-            >
-              Kontak
-            </a>
           </div>
-        )}
       </header>
 
       <section 

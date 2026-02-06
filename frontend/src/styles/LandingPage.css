@@ -1095,13 +1095,13 @@
 }
 
 .mobile-logo-item {
-  height: 28px;
+  height: 20px;
   width: auto;
   object-fit: contain;
 }
 
 .mobile-logo-center {
-  height: 32px;
+  height: 40px;
 }
 
 /* Hamburger menu button */
