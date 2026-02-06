@@ -14,7 +14,6 @@ import {
   FiPhone, 
   FiMail, 
   FiMapPin,
-  FiCheckCircle,
   FiFileText,
   FiPrinter,
   FiDownload
@@ -447,7 +446,6 @@ const LandingPage = () => {
           <nav className="nav-menu">
             <a href="#features">Fitur</a>
             <a href="#service">Layanan</a>
-            <a href="#about">Tentang</a>
             <a href="#contact">Kontak</a>
           </nav>
 
@@ -499,18 +497,7 @@ const LandingPage = () => {
             >
               Layanan
             </a>
-            <a 
-              href="#about" 
-              style={{ 
-                color: '#333', 
-                textDecoration: 'none',
-                padding: '10px 0',
-                borderBottom: '1px solid #eee'
-              }}
-              onClick={() => setShowMobileMenu(false)}
-            >
-              Tentang
-            </a>
+            
             <a 
               href="#contact" 
               style={{ 
@@ -673,43 +660,6 @@ const LandingPage = () => {
           </div>
         </div>
       </section>
-
-      {/* About Section */}
-      <section className="about" id="about">
-        <div className="container">
-          <div className="about-content">
-            <div className="about-text">
-              <h2>Tentang ICON PLUS</h2>
-              <p>ICON PLUS adalah solusi sistem antrian customer service terdepan yang dirancang untuk meningkatkan pengalaman pelanggan. Dengan teknologi terkini dan antarmuka yang user-friendly, kami memastikan setiap pelanggan mendapatkan layanan terbaik.</p>
-              <ul className="about-list">
-                <li><FiCheckCircle /> Teknologi Cloud-based Modern</li>
-                <li><FiCheckCircle /> Terintegrasi dengan Sistem CRM</li>
-                <li><FiCheckCircle /> Laporan Analitik Lengkap</li>
-                <li><FiCheckCircle /> Support Tim Professional</li>
-              </ul>
-            </div>
-            <div className="about-stats">
-              <div className="stat">
-                <h3>10K+</h3>
-                <p>Pengguna Aktif</p>
-              </div>
-              <div className="stat">
-                <h3>99.9%</h3>
-                <p>Uptime</p>
-              </div>
-              <div className="stat">
-                <h3>50K+</h3>
-                <p>Antrian Proses</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-     
-      
-
-      {/* Modal Success - Tampilan Nomor Antrian */}
       {showSuccess && queueData && (
         <div className="modal-overlay" onClick={() => setShowSuccess(false)}>
           <div className="success-modal-content" onClick={(e) => e.stopPropagation()}>
@@ -905,7 +855,6 @@ const LandingPage = () => {
               <ul>
                 <li><a href="#features">Fitur</a></li>
                 <li><a href="#service">Layanan</a></li>
-                <li><a href="#about">Tentang Kami</a></li>
                 <li><a href="#contact">Kontak</a></li>
               </ul>
             </div>
