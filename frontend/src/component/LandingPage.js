@@ -23,7 +23,6 @@ const LandingPage = () => {
   const [showForm, setShowForm] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [queueData, setQueueData] = useState(null);
-  const [showMobileMenu, setShowMobileMenu] = useState(false);
   const [formData, setFormData] = useState({
     id_pelanggan: '',
     nama: '',
