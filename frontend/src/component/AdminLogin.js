@@ -10,6 +10,7 @@ const AdminLogin = () => {
     password: ''
   });
   const [message, setMessage] = useState('');
+  const [messageType, setMessageType] = useState(''); // 'success' or 'error'
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ const AdminLogin = () => {
     e.preventDefault();
     setLoading(true);
     setMessage('');
+    setMessageType('');
 
     try {
       const response = await fetch('http://localhost:3000/api/auth/login', {
@@ -50,14 +52,17 @@ const AdminLogin = () => {
         sessionStorage.setItem('token', data.data.token);
         sessionStorage.setItem('user', JSON.stringify(data.data.user));
         setMessage('Login berhasil! Mengarahkan...');
+        setMessageType('success');
         setTimeout(() => {
           navigate('/admin');
         }, 1000);
       } else {
-        setMessage('✗ ' + data.message);
+        setMessage(data.message);
+        setMessageType('error');
       }
     } catch (error) {
-      setMessage('✗ Error: ' + error.message);
+      setMessage('Error: ' + error.message);
+      setMessageType('error');
     } finally {
       setLoading(false);
     }
@@ -81,7 +86,7 @@ const AdminLogin = () => {
           </div>
 
           {message && (
-            <div className={`message ${message.includes('✓') ? 'success' : 'error'}`}>
+            <div className={`message ${messageType}`}>
               {message}
             </div>
           )}
