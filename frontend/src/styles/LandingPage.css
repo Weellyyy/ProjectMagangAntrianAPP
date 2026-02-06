@@ -1090,12 +1090,12 @@
   display: none;
   align-items: center;
   justify-content: flex-start;
-  gap: 36px;
+  gap: 55px;
   flex: 1;
 }
 
 .mobile-logo-item {
-  height: 24px;
+  height: 18px;
   width: auto;
   object-fit: contain;
 }
