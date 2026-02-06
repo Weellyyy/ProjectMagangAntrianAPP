@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
-import { FiUser, FiLogOut, FiList, FiBarChart2, FiTrash } from "react-icons/fi";
-import React, { useState, useEffect, useCallback } from 'react'; // Tambah useCallback
+import { FiUser, FiLogOut, FiList, FiBarChart2, FiTrash, FiAlertTriangle } from "react-icons/fi"; // Tambah FiAlertTriangle
+import React, { useState, useEffect, useCallback } from 'react';
 import '../styles/globals.css';
 import '../styles/AdminDashboard.css';
 
@@ -17,8 +17,13 @@ const AdminDashboard = () => {
   const [user] = useState(JSON.parse(sessionStorage.getItem('user') || '{}'));
   const [sidebarOpen, setSidebarOpen] = useState(true);
   
-  // --- STATE BARU: Untuk Modal Detail ---
+  // State Modal Detail
   const [selectedKeluhan, setSelectedKeluhan] = useState(null);
+  
+  // --- STATE BARU: Untuk Modal Delete ---
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   const [totalPengunjung, setTotalPengunjung] = useState(0);
 
   // Check authentication
@@ -28,12 +33,10 @@ const AdminDashboard = () => {
     }
   }, [token, navigate]);
 
-  // Bungkus fungsi dengan useCallback
   const fetchAntrian = useCallback(async (filterParams = {}) => {
     if (!token) return;
     setLoading(true);
     try {
-      // Logika pembersihan filter (tetap sama)
       const cleanFilters = Object.fromEntries(
         Object.entries(filterParams).filter(([_, v]) => v !== '')
       );
@@ -59,7 +62,7 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
-  }, [token]); // Dependency: Fungsi ini hanya dibuat ulang kalau token berubah
+  }, [token]); 
 
   const fetchStatistics = async () => {
     if (!token) return;
@@ -118,11 +121,23 @@ const AdminDashboard = () => {
     }
   };
 
-  const handleDelete = async (id) => {
-    if (!window.confirm('Apakah Anda yakin ingin menghapus antrian ini?')) return;
+  // --- FUNGSI DELETE BARU (Membuka Modal) ---
+  const openDeleteModal = (id) => {
+    setItemToDelete(id);
+    setShowDeleteModal(true);
+  };
+
+  const closeDeleteModal = () => {
+    setItemToDelete(null);
+    setShowDeleteModal(false);
+  };
+
+  // --- FUNGSI EKSEKUSI DELETE ---
+  const confirmDelete = async () => {
+    if (!itemToDelete) return;
 
     try {
-      const response = await fetch(`http://localhost:3000/api/antrian/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/antrian/${itemToDelete}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${token}`,
@@ -132,16 +147,17 @@ const AdminDashboard = () => {
 
       const data = await response.json();
       if (data.success) {
-        setMessage('✓ Antrian dihapus');
+        setMessage('✓ Antrian berhasil dihapus');
         fetchAntrian(filters);
       } else {
         setMessage('✗ ' + data.message);
       }
     } catch (error) {
       setMessage('✗ Error: ' + error.message);
+    } finally {
+      closeDeleteModal(); // Tutup modal setelah selesai
     }
   };
-
  
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -154,14 +170,10 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (!token) return;
-
     const timeoutId = setTimeout(() => {
       fetchAntrian(filters);
     }, 500); 
-
     return () => clearTimeout(timeoutId);
-
-    
   }, [filters, fetchAntrian, token]);
 
 
@@ -185,15 +197,11 @@ const AdminDashboard = () => {
       className={`admin-sidebar ${sidebarOpen ? 'open' : 'closed'}`}
       onClick={() => !sidebarOpen && setSidebarOpen(true)}
     >
-      
-      {/* 2. onClick di Header: Menangani saat sidebar TERBUKA (klik logo untuk tutup).
-         e.stopPropagation() penting agar klik ini tidak bentrok dengan event parent.
-      */}
       <div 
         className="sidebar-header" 
         onClick={(e) => {
           if (sidebarOpen) {
-            e.stopPropagation(); // Cegah event bubbling
+            e.stopPropagation();
             setSidebarOpen(false);
           }
         }}
@@ -201,17 +209,13 @@ const AdminDashboard = () => {
       >
         <div className="sidebar-brand">
           <img src="/logobulat.png" alt="ICON PLUS Logo" className="logo-image" />
-          
           <span className={`sidebar-title ${!sidebarOpen && 'hidden'}`}>
             ICON PLUS
           </span>
         </div>
-        
-        {/* Opsional: Tambahkan indikator visual kecil (hamburger/panah) di header */}
         {sidebarOpen && <span className="close-indicator">◀</span>}
       </div>
 
-      {/* Navigasi - Kita perlu stopPropagation saat klik menu agar sidebar tidak 'berkedip' */}
       <nav className="sidebar-nav">
         <button
           className={`sidebar-item ${activeTab === 'antrian' ? 'active' : ''}`}
@@ -239,12 +243,9 @@ const AdminDashboard = () => {
               </span>
             )}
           </div>
-          </div>
+      </div>
 
-      {/* Footer juga perlu diproteksi */}
       <div className="sidebar-footer" onClick={(e) => e.stopPropagation()}>
-         {/* ... isi footer ... */}
-         {/* Tombol Logout */}
          <button onClick={handleLogout} className="sidebar-logout">
             <FiLogOut size={20} className="sidebar-icon" />
             {sidebarOpen && <span>Logout</span>}
@@ -260,11 +261,9 @@ const AdminDashboard = () => {
               <FiBarChart2 size={26} />
               <span>Admin Dashboard</span>
             </h1>
-
             <p>ICON PLUS Customer Service Management System</p>
           </div>
           <div className="header-actions">
-            
             <span className="user-info">
               <FiUser size={20} />
               {user.username}
@@ -339,7 +338,7 @@ const AdminDashboard = () => {
                     <th>Nama</th>
                     <th>No. Telepon</th>
                     <th>Kategori</th>
-                    <th>Detail Keluhan</th> {/* Kolom yang dimodifikasi */}
+                    <th>Detail Keluhan</th>
                     <th>Status</th>
                     <th>Waktu Masuk</th>
                     <th>Aksi</th>
@@ -356,7 +355,6 @@ const AdminDashboard = () => {
                         <td>{item.no_telp}</td>
                         <td>{item.kategori_keluhan}</td>
                         
-                        {/* --- MODIFIKASI: Box Keluhan & Tombol Detail --- */}
                         <td className="detail-column">
                           <div className="keluhan-text-box">
                             {item.detail_keluhan || '-'}
@@ -382,7 +380,8 @@ const AdminDashboard = () => {
                         </td>
                         <td>{item.created_at ? new Date(item.created_at).toLocaleString('id-ID') : '-'}</td>
                         <td>
-                          <button onClick={() => handleDelete(item.id_pengunjung)} className="delete-btn">
+                          {/* Ubah onClick untuk memanggil openDeleteModal */}
+                          <button onClick={() => openDeleteModal(item.id_pengunjung)} className="delete-btn">
                             <FiTrash />
                           </button>
                         </td>
@@ -400,7 +399,7 @@ const AdminDashboard = () => {
         </div>
       )}
 
-      {/* --- MODAL POP-UP DETAIL --- */}
+      {/* --- MODAL DETAIL (Existing) --- */}
       {selectedKeluhan && (
         <div className="modal-overlay" onClick={() => setSelectedKeluhan(null)}>
           <div className="modal-content detail-modal" onClick={e => e.stopPropagation()}>
@@ -428,6 +427,29 @@ const AdminDashboard = () => {
             </div>
             <div className="modal-footer">
               <button className="admin-login-btn" onClick={() => setSelectedKeluhan(null)}>Tutup</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* --- MODAL DELETE KONFIRMASI (NEW) --- */}
+      {showDeleteModal && (
+        <div className="modal-overlay" onClick={closeDeleteModal}>
+          <div className="modal-content delete-modal-content" onClick={e => e.stopPropagation()}>
+            <div className="delete-icon-container">
+              <FiAlertTriangle className="delete-warning-icon" />
+            </div>
+            <h2>Hapus Antrian?</h2>
+            <p className="delete-confirm-text">
+              Anda yakin ingin menghapus data antrian ini? Tindakan ini tidak dapat dibatalkan.
+            </p>
+            <div className="modal-actions-row">
+              <button className="btn-cancel" onClick={closeDeleteModal}>
+                Batal
+              </button>
+              <button className="btn-danger" onClick={confirmDelete}>
+                Ya, Hapus
+              </button>
             </div>
           </div>
         </div>
